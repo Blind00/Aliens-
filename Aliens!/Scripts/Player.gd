@@ -5,37 +5,35 @@ func _ready():
 	add_to_group("Player")
 
 export var Speed = 200
-var velocity = Vector2.ZERO
+var moving = false
 var p_Bullet = load("res://Scenes/p_Bullet.tscn")
 onready var A1 = $AnimationPlayer.play("Idle")
 var b = p_Bullet.instance()
 
-func get_input():
-	velocity = Vector2.ZERO
+func _process(delta):
+	
 	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
+		move(Speed,0,delta)
 	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
+		move(-Speed,0,delta)
 	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
+		move(0,-Speed,delta)
 		$AnimationPlayer.play("Move Up")
 	if Input.is_action_pressed("ui_down"):
-		velocity.y  += 1
+		move(0,Speed,delta)
 		$AnimationPlayer.play("Move Down")
 	if Input.is_action_pressed("Shoot"):
 		shoot()
 	
-	velocity = velocity.normalized() * Speed
 
 func _physics_process(delta):
 	get_input()
-	velocity = move_and_slide(velocity)
+	velocity = (velocity)
 	
-
-
-func shoot():
-	add_child(b)
-
+func move(xspeed,yspeed,delta):
+	position.x += xspeed * delta
+	position.y += yspeed * delta
+	moving = true
 
 
 
