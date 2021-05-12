@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Sheet_Plasma_Tower_With_Bullets.png-a7772f000dc8797720d0694a4d3627dd.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://GreatSpaceAsset/Air Units, Ships/Sheets + EXTRA ITEMS/!ALL SHEETS HERE!/Sheet_Plasma_Tower_With_Bullets.png"
+dest_files=[ "res://.import/Sheet_Plasma_Tower_With_Bullets.png-a7772f000dc8797720d0694a4d3627dd.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

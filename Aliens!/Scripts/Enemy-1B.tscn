@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GreatSpaceAsset/Air Units, Ships/CoreDefender_F_NightMare_Scarlet_209x182.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 63.1415
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -26.4584 )
+texture = ExtResource( 1 )
+flip_v = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.76778, -43.7825 )
+shape = SubResource( 1 )
