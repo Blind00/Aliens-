@@ -1,7 +1,7 @@
 extends Node2D
 func _ready():
 	pass
-	add_to_group("Enemy")
+	add_to_group("ene")
 
 var bull = load("res://Scenes/e1_Bullet.tscn")
 

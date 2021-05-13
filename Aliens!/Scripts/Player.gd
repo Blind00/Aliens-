@@ -1,40 +1,38 @@
-extends Node2D
+extends KinematicBody2D
 
 func _ready():
 	pass 
 	add_to_group("Player")
+	yield(get_tree(),"idle_frame")
+	get_tree().call_group("ene","set_player",self)
 
-export var Speed = 200
-var moving = false
-var p_Bullet = load("res://Scenes/p_Bullet.tscn")
+const Speed = 300
+onready var raycast = $RayCast2D
+
 onready var A1 = $AnimationPlayer.play("Idle")
-var b = p_Bullet.instance()
-
-func _process(delta):
-	
-	if Input.is_action_pressed("ui_right"):
-		move(Speed,0,delta)
-	if Input.is_action_pressed("ui_left"):
-		move(-Speed,0,delta)
-	if Input.is_action_pressed("ui_up"):
-		move(0,-Speed,delta)
-		$AnimationPlayer.play("Move Up")
-	if Input.is_action_pressed("ui_down"):
-		move(0,Speed,delta)
-		$AnimationPlayer.play("Move Down")
-	if Input.is_action_pressed("Shoot"):
-		shoot()
-	
 
 func _physics_process(delta):
-	get_input()
-	velocity = (velocity)
+	var move_vec = Vector2()
+	if Input.is_action_pressed("ui_up"):
+		move_vec.y -=1
+	if Input.is_action_pressed("ui_down"):
+		move_vec.y +=1
+	if Input.is_action_pressed("ui_left"):
+		move_vec.x -=1
+	if Input.is_action_pressed("ui_right"):
+		move_vec.x +=1
+		move_vec = move_vec.normalised()
+		move_and_collide(move_vec * Speed * delta)
 	
-func move(xspeed,yspeed,delta):
-	position.x += xspeed * delta
-	position.y += yspeed * delta
-	moving = true
+	var look_vec = get_global_mouse_position() - global_position
+	global_rotation = atan2(look_vec.y, look_vec.x)
 
+	if Input.is_action_just_pressed("Shoot"):
+		var coll = raycast.get_collider()
+		if raycast.is_collidiing() and coll.has_method("'kill"):
+			coll.kill
 
+func kill():
+	get_tree().reload_current_scene()
 
 

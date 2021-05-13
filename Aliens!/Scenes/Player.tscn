@@ -8,19 +8,17 @@
 [ext_resource path="res://AnimationPlayer/ScenesIdle.tres" type="Animation" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 9.74712
+radius = 12.4352
 
-[node name="Node2D" type="Node2D"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 offset = Vector2( -0.952087, 6.40689 )
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = ExtResource( 6 )
@@ -34,5 +32,3 @@ texture = ExtResource( 3 )
 offset = Vector2( 1.04846, 4.55162 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-scale = Vector2( 1, -1000 )
-enabled = true
