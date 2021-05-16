@@ -6,33 +6,42 @@ func _ready():
 	yield(get_tree(),"idle_frame")
 	get_tree().call_group("ene","set_player",self)
 
-const Speed = 300
-onready var raycast = $RayCast2D
+export var speed = 200
+export var friction = 0.01
+export var acceleration = 0.1
+onready var Bullet = ("res://p_Bullet.tscn")
 
-onready var A1 = $AnimationPlayer.play("Idle")
+var velocity = Vector2()
 
-func _physics_process(delta):
-	var move_vec = Vector2()
-	if Input.is_action_pressed("ui_up"):
-		move_vec.y -=1
-	if Input.is_action_pressed("ui_down"):
-		move_vec.y +=1
-	if Input.is_action_pressed("ui_left"):
-		move_vec.x -=1
-	if Input.is_action_pressed("ui_right"):
-		move_vec.x +=1
-		move_vec = move_vec.normalised()
-		move_and_collide(move_vec * Speed * delta)
-	
-	var look_vec = get_global_mouse_position() - global_position
-	global_rotation = atan2(look_vec.y, look_vec.x)
-
+func get_input():
+	var input = Vector2()
+	if Input.is_action_pressed('Right'):
+		input.x += 1
+	if Input.is_action_pressed('Left'):
+		input.x -= 1
+	if Input.is_action_pressed('Down'):
+		input.y += 1
+	if Input.is_action_pressed('Up'):
+		input.y -= 1
 	if Input.is_action_just_pressed("Shoot"):
-		var coll = raycast.get_collider()
-		if raycast.is_collidiing() and coll.has_method("'kill"):
-			coll.kill
+		shoot()
+	return input
+
+# warning-ignore:unused_argument
+func _physics_process(delta):
+	var direction = get_input()
+	if direction.length() > 0:
+		velocity = lerp(velocity, direction.normalized() * speed, acceleration)
+	else:
+		velocity = lerp(velocity, Vector2.ZERO, friction)
+	velocity = move_and_slide(velocity)
+	look_at(get_global_mouse_position())
+	get_input()
 
 func kill():
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
-
+func shoot():
+	var b = Bullet.instance()
+	add_child(b)

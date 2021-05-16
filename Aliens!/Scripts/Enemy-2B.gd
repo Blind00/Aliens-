@@ -25,5 +25,4 @@ func _physics_process(delta):
 func kill():
 	queue_free()
 	
-func set_player(p):
-	player-p
+

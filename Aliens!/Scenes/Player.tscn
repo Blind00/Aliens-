@@ -17,6 +17,7 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 1 )
 offset = Vector2( -0.952087, 6.40689 )
 
@@ -26,9 +27,12 @@ anims/Idle = ExtResource( 6 )
 "anims/Move Up" = ExtResource( 4 )
 
 [node name="b2_02" type="Sprite" parent="."]
-position = Vector2( 0, 61.4069 )
+position = Vector2( -66.1459, 0 )
+rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 offset = Vector2( 1.04846, 4.55162 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5708
+scale = Vector2( 1, 100 )
