@@ -2,13 +2,13 @@ extends KinematicBody2D
 
 func _ready():
 	pass 
-	add_to_group("Player")
+	add_to_group("player")
 	yield(get_tree(),"idle_frame")
 	get_tree().call_group("ene","set_player",self)
 
 export var speed = 200
 export var friction = 0.01
-export var acceleration = 0.1
+export var acceleration = 0.01
 onready var Bullet = ("res://p_Bullet.tscn")
 
 var velocity = Vector2()
@@ -23,8 +23,6 @@ func get_input():
 		input.y += 1
 	if Input.is_action_pressed('Up'):
 		input.y -= 1
-	if Input.is_action_just_pressed("Shoot"):
-		shoot()
 	return input
 
 # warning-ignore:unused_argument
@@ -42,6 +40,3 @@ func kill():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
-func shoot():
-	var b = Bullet.instance()
-	add_child(b)
