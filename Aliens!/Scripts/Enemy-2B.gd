@@ -4,20 +4,17 @@ const Speed = 200
 
 onready var collision = $CollisionShape2D
 var player = null
-
+var velocity = Vector2.ZERO
 
 func _ready():
 	add_to_group("ene")
 	
 func _physics_process(delta):
 	if player == null:
-		return
-		
-	var vec_to_player = player.global_position - global_position
-	vec_to_player = vec_to_player.normalised()
-	global_rotation = atan2(vec_to_player.y, vec_to_player.x)
-	move_and_collide(vec_to_player * Speed * delta)
-	
+		return 
+	velocity = position.direction_to(player.position) * Speed 
+	velocity = move_and_slide(velocity)
+
 	if collision.is_colliding():
 		var coll = collision.get_collider()
 		if coll.name == "Player":

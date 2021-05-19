@@ -9,9 +9,9 @@ func _ready():
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
-onready var Bullet = ("res://p_Bullet.tscn")
-
+onready var Bullet = ("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
+var collision = $Raycast2d.collide_with_areas
 
 func get_input():
 	var input = Vector2()
@@ -21,8 +21,16 @@ func get_input():
 		input.x -= 1
 	if Input.is_action_pressed('Down'):
 		input.y += 1
+		$AnimationPlayer.play("Move Down")
+	else:
+		$AnimationPlayer.play("DowntoIdle")
 	if Input.is_action_pressed('Up'):
 		input.y -= 1
+		$AnimationPlayer.play("Move Up")
+	else:
+		$AnimationPlayer.play("UptoIdle")
+	if Input.is_action_just_pressed("Shoot"):
+		shoot()
 	return input
 
 # warning-ignore:unused_argument
@@ -40,3 +48,8 @@ func kill():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
+func shoot():
+		if RayCast2D.is_colliding:
+			var coll = collision.is_collide_with_areas_enabled()
+			if coll.is_in_group("ene"):
+				coll.kill()
