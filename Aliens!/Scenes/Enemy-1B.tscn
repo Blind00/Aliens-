@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 63.1415
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Enemy-1B" type="KinematicBody2D"]
+scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

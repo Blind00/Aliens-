@@ -9,9 +9,10 @@ func _ready():
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
-onready var Bullet = ("res://Scenes/p_Bullet.tscn")
+var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-var collision = $Raycast2d.collide_with_areas
+const bspeed = 200
+
 
 func get_input():
 	var input = Vector2()
@@ -19,16 +20,10 @@ func get_input():
 		input.x += 1
 	if Input.is_action_pressed('Left'):
 		input.x -= 1
-	if Input.is_action_pressed('Down'):
-		input.y += 1
-		$AnimationPlayer.play("Move Down")
-	else:
-		$AnimationPlayer.play("DowntoIdle")
-	if Input.is_action_pressed('Up'):
-		input.y -= 1
-		$AnimationPlayer.play("Move Up")
-	else:
-		$AnimationPlayer.play("UptoIdle")
+	if Input.is_action_pressed("Down"):
+		input.y +=1
+	if Input.is_action_pressed("Up"):
+		input.y -=1
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
 	return input
@@ -49,7 +44,20 @@ func kill():
 	get_tree().reload_current_scene()
 
 func shoot():
-		if RayCast2D.is_colliding:
-			var coll = collision.is_collide_with_areas_enabled()
-			if coll.is_in_group("ene"):
-				coll.kill()
+	var las = laser_bolt.instance()
+	get_tree().get_root().add_child(las)
+	las.global_position = $Position2D.global_position
+	las.rotation_degrees = rotation_degrees
+	las.apply_impulse(Vector2(),Vector2(bspeed,0).rotated(rotation))
+	get_tree().get_root().call_deferred("add_child",las)
+	
+	
+func get_time():
+	return OS.get_ticks_msec()/1000.0
+
+
+func _on_Area2D_body_entered(body):
+	if "Enemy-2B" in body.name:
+		kill()
+	
+	pass # Replace with function body.
