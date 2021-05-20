@@ -3,6 +3,8 @@ extends KinematicBody2D
 const Speed = 50
 export var friction = 0.1
 export var acceleration = 0.01
+var alive = true
+#onready var revivetime = $Timer
 
 onready var collision = $RayCast2D
 var player = null
@@ -33,3 +35,13 @@ func set_player(p):
 func _on_Area2D_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()
+		var alive = false
+		print("Dead")
+		#$Timer.start
+
+
+
+
+#func _on_Timer_timeout():
+	#var alive = true
+	#print("Alive")

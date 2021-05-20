@@ -270,6 +270,15 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Particles" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Particles"]
+anims/DowntoIdle = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+"anims/Move Down" = SubResource( 4 )
+"anims/Move Up" = SubResource( 5 )
+anims/UptoIdle = SubResource( 6 )
+
 [node name="Sprites" type="Sprite" parent="."]
 rotation = 1.5708
 texture = ExtResource( 1 )
@@ -280,17 +289,42 @@ position = Vector2( -26.6792, 36.6566 )
 scale = Vector2( 0.5, 0.3 )
 texture = ExtResource( 3 )
 
+[node name="ThrustPart1" type="CPUParticles2D" parent="Sprites/b2_05"]
+position = Vector2( -0.442303, -48.2514 )
+rotation = -5.96046e-06
+scale = Vector2( 2, 3.33333 )
+amount = 52
+lifetime_randomness = 0.45
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 5 )
+direction = Vector2( 1, 5 )
+spread = 159.37
+linear_accel = -0.43
+linear_accel_random = 0.55
+color = Color( 0.0431373, 0.843137, 0.862745, 1 )
+hue_variation = 0.04
+hue_variation_random = 0.53
+
 [node name="b2_06" type="Sprite" parent="Sprites"]
 position = Vector2( 27.275, 37.7081 )
 scale = Vector2( 0.5, 0.33 )
 texture = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DowntoIdle = SubResource( 2 )
-anims/Idle = SubResource( 3 )
-"anims/Move Down" = SubResource( 4 )
-"anims/Move Up" = SubResource( 5 )
-anims/UptoIdle = SubResource( 6 )
+[node name="ThrustPart2" type="CPUParticles2D" parent="Sprites/b2_06"]
+position = Vector2( -1.69283, -45.6218 )
+rotation = -5.4186e-06
+scale = Vector2( 2, 3.0303 )
+amount = 52
+lifetime_randomness = 0.45
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 5 )
+direction = Vector2( 1, 5 )
+spread = 159.37
+linear_accel = -0.43
+linear_accel_random = 0.55
+color = Color( 0.0431373, 0.843137, 0.862745, 1 )
+hue_variation = 0.04
+hue_variation_random = 0.53
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 44.0973, 0 )
@@ -300,4 +334,5 @@ position = Vector2( 44.0973, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = -1.5708
 shape = SubResource( 7 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

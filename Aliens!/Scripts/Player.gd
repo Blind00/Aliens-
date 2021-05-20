@@ -11,7 +11,7 @@ export var friction = 0.01
 export var acceleration = 0.01
 var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-const bspeed = 200
+const bspeed = 1000
 
 
 func get_input():
