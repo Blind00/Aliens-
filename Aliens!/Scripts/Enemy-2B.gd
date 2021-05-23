@@ -14,7 +14,7 @@ var fd = 50
 func _ready():
 	add_to_group("ene")
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if player == null:
 		return 
 	velocity = position.direction_to(player.position) * Speed
@@ -35,7 +35,7 @@ func set_player(p):
 func _on_Area2D_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()
-		var alive = false
+		alive = false
 		print("Dead")
 		#$Timer.start
 

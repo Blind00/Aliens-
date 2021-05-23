@@ -14,7 +14,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = -1.5708
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 normal_map = ExtResource( 1 )
 offset = Vector2( 0, -3.91631 )

@@ -52,6 +52,7 @@ func shoot():
 	get_tree().get_root().call_deferred("add_child",las)
 	
 	
+	
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 
@@ -59,5 +60,6 @@ func get_time():
 func _on_Area2D_body_entered(body):
 	if "Enemy-2B" in body.name:
 		kill()
+		
 	
 	pass # Replace with function body.
