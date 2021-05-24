@@ -11,7 +11,7 @@ export var friction = 0.01
 export var acceleration = 0.01
 var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-const bspeed = 1000
+const bspeed = 2000
 
 
 func get_input():
@@ -26,6 +26,8 @@ func get_input():
 		input.y -=1
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
+	if Input.is_action_just_pressed("Restart"):
+		get_tree().reload_current_scene()
 	return input
 
 # warning-ignore:unused_argument
@@ -60,6 +62,3 @@ func get_time():
 func _on_Area2D_body_entered(body):
 	if "Enemy-2B" in body.name:
 		kill()
-		
-	
-	pass # Replace with function body.
