@@ -18,12 +18,23 @@ func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('Right'):
 		input.x += 1
+		$Sprites/b2_06/ThrustPart2.emitting = true
+	else:
+		$Sprites/b2_06/ThrustPart2.emitting = false
 	if Input.is_action_pressed('Left'):
 		input.x -= 1
+		$Sprites/b2_05/ThrustPart1.emitting = true
+	else:
+		$Sprites/b2_05/ThrustPart1.emitting = false
 	if Input.is_action_pressed("Down"):
 		input.y +=1
 	if Input.is_action_pressed("Up"):
 		input.y -=1
+		$Sprites/b2_05/ThrustPart1.emitting = true
+		$Sprites/b2_06/ThrustPart2.emitting = true
+	else:
+		$Sprites/b2_06/ThrustPart2.emitting = false
+		$Sprites/b2_05/ThrustPart1.emitting = false
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
 	if Input.is_action_just_pressed("Restart"):
