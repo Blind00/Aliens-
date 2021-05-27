@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Level 2.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy Spawn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://16.jpg" type="Texture" id=9]
 
 [node name="Level 2" type="Node2D"]
@@ -34,6 +35,20 @@ texture = ExtResource( 9 )
 position = Vector2( 694.922, 159.818 )
 texture = ExtResource( 9 )
 
+[node name="Spawners" type="Node" parent="."]
+
+[node name="Enemy Spawn" parent="Spawners" instance=ExtResource( 3 )]
+position = Vector2( 33.9795, 28.3163 )
+
+[node name="Enemy Spawn2" parent="Spawners" instance=ExtResource( 3 )]
+position = Vector2( 1013.72, 28.3163 )
+
+[node name="Enemy Spawn3" parent="Spawners" instance=ExtResource( 3 )]
+position = Vector2( 1013.72, 560.661 )
+
+[node name="Enemy Spawn4" parent="Spawners" instance=ExtResource( 3 )]
+position = Vector2( 33.9795, 560.661 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 772, 417 )
 
@@ -43,14 +58,10 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
 
-[node name="Enemy Spawn" parent="." instance=ExtResource( 3 )]
-position = Vector2( 33.9795, 28.3163 )
+[node name="Wall" parent="." instance=ExtResource( 4 )]
 
-[node name="Enemy Spawn2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1013.72, 28.3163 )
+[node name="EneSpawn" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
 
-[node name="Enemy Spawn3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1013.72, 560.661 )
-
-[node name="Enemy Spawn4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 33.9795, 560.661 )
+[connection signal="timeout" from="EneSpawn" to="." method="_on_EneSpawn_timeout"]
