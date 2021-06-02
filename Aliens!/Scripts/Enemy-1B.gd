@@ -12,7 +12,7 @@ func _ready():
 	add_to_group("ene")
 	
 func _physics_process(delta):
-	velocity = position - player.position
+	velocity = self.position - player.position
 	velocity = move_and_slide(velocity)
 	if position.length() > 0:
 		velocity = lerp(velocity, position.normalized() * Speed, acceleration)
@@ -24,7 +24,7 @@ func _physics_process(delta):
 func spawn_bullets():
 	var b1 = bullet_scene.instance()
 	b1.position = self.position
-	b1.dir = Vector2(player.position.x - self.position.x, player.position.y - self.position.y).normalised()
+	b1.dir = Vector2(player.position.x - self.position.x, player.position.y - self.position.y).normalized()
 	get_parent().add_child(b1)
 
 func set_player(p):
