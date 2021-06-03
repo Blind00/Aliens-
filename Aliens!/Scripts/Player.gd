@@ -11,7 +11,7 @@ export var friction = 0.01
 export var acceleration = 0.01
 var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-const bspeed = 2000
+export var bspeed = 50
 
 
 func get_input():
@@ -63,9 +63,11 @@ func shoot():
 	las.rotation_degrees = rotation_degrees
 	las.apply_impulse(Vector2(),Vector2(bspeed,0).rotated(rotation))
 	get_tree().get_root().call_deferred("add_child",las)
-	
-	
-	
+	p_dis()
+
+func p_dis():
+	laser_bolt.free()
+
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 

@@ -30,18 +30,9 @@ func _physics_process(_delta):
 func set_player(p):
 	player=p
 
-
+func kill():
+		queue_free()
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
-		queue_free()
-		alive = false
-		print("Dead")
-		#$Timer.start
-
-
-
-
-#func _on_Timer_timeout():
-	#var alive = true
-	#print("Alive")
+		kill()
