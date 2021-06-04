@@ -68,4 +68,4 @@ smoothing_enabled = true
 smoothing_speed = 3.0
 
 [node name="Enemy-1B" parent="." instance=ExtResource( 1 )]
-position = Vector2( 727.073, 417 )
+position = Vector2( 665.575, 399.854 )

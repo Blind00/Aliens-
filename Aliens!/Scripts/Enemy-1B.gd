@@ -4,10 +4,12 @@ const Speed = 50
 export var friction = 0.1
 export var acceleration = 0.01
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
-onready var collision = $RayCast2D
+onready var gun = get_node("Shoot!")
 onready var player = get_parent().get_node("Player")
 var velocity = Vector2.ZERO
 var direction = velocity
+export var bspeed = 500
+
 
 func _ready():
 	add_to_group("ene")
@@ -23,12 +25,16 @@ func _physics_process(_delta):
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 	look_at(player.position)
+	
+
+
 		
-func spawn_bullets():
-	var b1 = bullet_scene.instance()
-	b1.position = self.position
-	b1.dir = Vector2(player.position.x - self.position.x, player.position.y - self.position.y).normalized()
-	get_parent().add_child(b1)
+func shoot():
+	var las = bullet_scene.instance()
+	las.global_position = gun.global_position
+	las.rotation_degrees = rotation_degrees
+	
+
 
 func set_player(p):
 	player=p
@@ -38,3 +44,10 @@ func kill():
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	kill()
+
+
+func _on_Visibilty_body_entered(body):
+	if "Player" in body.name:
+		look_at(player.position)
+		shoot()
+		

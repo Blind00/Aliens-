@@ -66,8 +66,9 @@ func shoot():
 	p_dis()
 
 func p_dis():
-	laser_bolt.free()
-
+	var las = laser_bolt.instance()
+	las.free()
+	
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 

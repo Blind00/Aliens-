@@ -7,7 +7,7 @@
 radius = 19.5654
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 82.6172
+radius = 825.884
 
 [node name="Enemy-1B" type="KinematicBody2D"]
 position = Vector2( -0.0297241, -0.0177917 )
@@ -24,11 +24,21 @@ flip_v = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hit!" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit!"]
 position = Vector2( -14.4985, 1.87077 )
 rotation = -1.5708
 shape = SubResource( 2 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[node name="Visibilty!" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibilty!"]
+position = Vector2( -14.4985, 1.87077 )
+rotation = -1.5708
+shape = SubResource( 2 )
+
+[node name="Shoot!" type="Position2D" parent="."]
+
+[connection signal="body_entered" from="Hit!" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Visibilty!" to="." method="_on_Visibilty_body_entered"]
