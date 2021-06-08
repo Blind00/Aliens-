@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 50
+const Speed = 0
 export var friction = 0.1
 export var acceleration = 0.01
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
@@ -9,6 +9,7 @@ onready var player = get_parent().get_node("Player")
 var velocity = Vector2.ZERO
 var direction = velocity
 export var bspeed = 500
+var playerV = null
 
 
 func _ready():
@@ -25,7 +26,7 @@ func _physics_process(_delta):
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 	look_at(player.position)
-	
+
 
 
 		
@@ -39,15 +40,14 @@ func shoot():
 func set_player(p):
 	player=p
 
-func kill():
-	queue_free()
-
 func _on_Area2D_body_entered(body: Node) -> void:
-	kill()
+	if "p_Bullet" in body.name:
+		queue_free()
 
 
 func _on_Visibilty_body_entered(body):
-	if "Player" in body.name:
-		look_at(player.position)
-		shoot()
-		
+	shoot()
+
+
+
+

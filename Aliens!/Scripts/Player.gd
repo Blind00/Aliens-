@@ -58,21 +58,15 @@ func kill():
 
 func shoot():
 	var las = laser_bolt.instance()
-	get_tree().get_root().add_child(las)
-	las.global_position = $Position2D.global_position
-	las.rotation_degrees = rotation_degrees
-	las.apply_impulse(Vector2(),Vector2(bspeed,0).rotated(rotation))
-	get_tree().get_root().call_deferred("add_child",las)
-	p_dis()
+	owner.add_child(las)
+	las.transform = $Gun.global_transform
+	
 
-func p_dis():
-	var las = laser_bolt.instance()
-	las.free()
 	
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 
 
 func _on_Area2D_body_entered(body):
-	if "Enemy-2B" in body.name:
+	if "Enemy-1B" and "Enemy-2B" in body.name:
 		kill()

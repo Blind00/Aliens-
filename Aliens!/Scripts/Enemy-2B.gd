@@ -30,9 +30,8 @@ func _physics_process(_delta):
 func set_player(p):
 	player=p
 
-func kill():
+
+func _on_Enemy2B_body_entered(body):
+	if "p_Bullet"  in body.name:
 		queue_free()
 
-func _on_Area2D_body_entered(body: Node) -> void:
-	if "p_Bullet" in body.name:
-		kill()

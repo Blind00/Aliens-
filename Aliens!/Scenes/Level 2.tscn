@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Enemy-1B.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Enemy Spawn.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemy-2B.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BG!.tres" type="TileSet" id=4]
+[ext_resource path="res://Scenes/Enemy-1B.tscn" type="PackedScene" id=5]
 
 [node name="Level 2" type="Node2D"]
 
 [node name="BG" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
 margin_left = -2247.73
@@ -19,11 +24,10 @@ __meta__ = {
 }
 
 [node name="Blue Sector" type="ColorRect" parent="BG"]
-margin_left = -2059.84
-margin_top = -1371.22
-margin_right = 3694.16
-margin_bottom = 553.78
-hint_tooltip = "Quadrant R"
+margin_left = -2247.73
+margin_top = -1507.98
+margin_right = 3506.27
+margin_bottom = 417.02
 color = Color( 0.0352941, 0.0392157, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -34,7 +38,6 @@ margin_left = -2248.0
 margin_top = 561.0
 margin_right = 3515.0
 margin_bottom = 2401.0
-hint_tooltip = "Quadrant R"
 color = Color( 0.101961, 0.0117647, 0.0117647, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,7 +47,6 @@ __meta__ = {
 margin_left = -2248.0
 margin_top = -1508.0
 margin_bottom = 2401.0
-hint_tooltip = "Quadrant R"
 color = Color( 0.105882, 0.105882, 0.105882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,5 +69,11 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
 
-[node name="Enemy-1B" parent="." instance=ExtResource( 1 )]
-position = Vector2( 665.575, 399.854 )
+[node name="Enemy Spawn" parent="." instance=ExtResource( 1 )]
+position = Vector2( 140.092, 109.376 )
+
+[node name="Enemy-2B" parent="." instance=ExtResource( 3 )]
+position = Vector2( 493.843, 265.397 )
+
+[node name="Enemy-1B" parent="." instance=ExtResource( 5 )]
+position = Vector2( 422.1, 381.749 )
