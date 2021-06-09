@@ -3,17 +3,14 @@ extends KinematicBody2D
 const Speed = 50
 export var friction = 0.1
 export var acceleration = 0.01
-var alive = true
-#onready var revivetime = $Timer
-
 onready var collision = $RayCast2D
 var player = null
 var velocity = Vector2.ZERO
 var direction = velocity
-var fd = 50
 func _ready():
 	add_to_group("ene")
-	
+
+
 func _physics_process(_delta):
 	if player == null:
 		return 
@@ -25,7 +22,7 @@ func _physics_process(_delta):
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 	look_at(player.position)
-		
+
 
 func set_player(p):
 	player=p

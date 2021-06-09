@@ -60,9 +60,8 @@ func shoot():
 	var las = laser_bolt.instance()
 	owner.add_child(las)
 	las.transform = $Gun.global_transform
-	
 
-	
+
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 

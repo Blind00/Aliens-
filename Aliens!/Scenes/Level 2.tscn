@@ -9,6 +9,7 @@
 [node name="Level 2" type="Node2D"]
 
 [node name="BG" type="Node2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_group_": true
 }
