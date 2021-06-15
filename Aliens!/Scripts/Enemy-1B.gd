@@ -8,6 +8,7 @@ onready var player = get_parent().get_node("Player")
 var velocity = Vector2.ZERO
 var direction = velocity
 export var bspeed = 500
+var lock = false
 
 
 
@@ -17,14 +18,15 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		return 
-	velocity = position.direction_to(player.position) * Speed
-	velocity = move_and_slide(velocity)
-	if direction.length() > 0:
-		velocity = lerp(velocity, direction.normalized() * Speed, acceleration)
-	else:
-		velocity = lerp(velocity, Vector2.ZERO, friction)
-	velocity = move_and_slide(velocity)
-	look_at(player.position)
+	if lock == false:
+		velocity = position.direction_to(player.position) * Speed
+		velocity = move_and_slide(velocity)
+		if direction.length() > 0:
+			velocity = lerp(velocity, direction.normalized() * Speed, acceleration)
+		else:
+			velocity = lerp(velocity, Vector2.ZERO, friction)
+		velocity = move_and_slide(velocity)
+		look_at(player.position)
 
 
 
@@ -41,13 +43,13 @@ func shoot():
 func set_player(p):
 	player=p
 
-func _on_Area2D_body_entered(body: Node) -> void:
+func _on_Ouch_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()
 
 
-func _on_Visibilty_body_entered(body):
-	if body != self:
+func _on_Visibility_body_entered(body):
+	if player != self:
 		player = body
 	else:
 		player = null

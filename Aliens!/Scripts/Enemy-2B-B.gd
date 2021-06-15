@@ -7,7 +7,6 @@ onready var collision = $RayCast2D
 var player = null
 var velocity = Vector2.ZERO
 var direction = velocity
-onready var B = preload("res://Scenes/Enemy-2B-B.tscn")
 
 
 func _ready():
@@ -30,16 +29,6 @@ func _physics_process(_delta):
 func set_player(p):
 	player=p
 
-func DeathSpawn():
-		var b = B.instance()
-		get_tree().get_root().add_child(b)
-		b.transform = $DeathSpawn.global_transform
-		var b2 = B.instance()
-		get_tree().get_root().add_child(b2)
-		b2.transform = $DeathSpawn.global_transform
-
-func _on_Enemy2B_body_entered(body):
+func _on_Enemy2BB_body_entered(body):
 	if "p_Bullet"  in body.name:
-		DeathSpawn()
 		queue_free()
-

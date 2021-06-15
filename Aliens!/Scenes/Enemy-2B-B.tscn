@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GreatSpaceAsset/Air Units, Ships/Stalker_Sky_100x120.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemy-2B.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemy-2B-B.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 10.5449
@@ -9,7 +9,8 @@ radius = 10.5449
 [sub_resource type="CircleShape2D" id=2]
 radius = 12.6485
 
-[node name="Enemy-2B" type="KinematicBody2D"]
+[node name="Enemy-2B-B" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,12 +27,10 @@ shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Enemy-2B" type="Area2D" parent="."]
+[node name="Enemy-2B-B" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy-2B"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy-2B-B"]
 shape = SubResource( 2 )
 
-[node name="DeathSpawn" type="Position2D" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Enemy-2B" to="." method="_on_Enemy2B_body_entered"]
+[connection signal="body_entered" from="Enemy-2B-B" to="." method="_on_Enemy2BB_body_entered"]

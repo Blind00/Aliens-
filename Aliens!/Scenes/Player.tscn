@@ -337,4 +337,5 @@ position = Vector2( 44.0973, 0 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = -1.5708
 shape = SubResource( 7 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
