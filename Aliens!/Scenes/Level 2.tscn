@@ -8,6 +8,7 @@
 [node name="Level 2" type="Node2D"]
 
 [node name="BG" type="Node2D" parent="."]
+position = Vector2( 150.076, -218.979 )
 __meta__ = {
 "_edit_group_": true
 }
