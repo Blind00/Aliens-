@@ -10,7 +10,7 @@ radius = 10.5449
 radius = 12.6485
 
 [node name="Enemy-2B-B" type="KinematicBody2D"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.7, 0.7 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -5,7 +5,7 @@
 [ext_resource path="res://GreatSpaceAsset/Air Units, Ships/Sheets + EXTRA ITEMS/JetBeams/b2_05.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 3.23423
+radius = 21.4639
 
 [sub_resource type="Animation" id=2]
 resource_name = "DowntoIdle"
@@ -260,8 +260,8 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=7]
-radius = 14.7496
-height = 30.3118
+radius = 22.8391
+height = 31.9564
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.5, 0.5 )
@@ -332,10 +332,10 @@ hue_variation_random = 0.53
 [node name="Gun" type="Position2D" parent="."]
 position = Vector2( 44.0973, 0 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Ouch" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ouch"]
 rotation = -1.5708
 shape = SubResource( 7 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]

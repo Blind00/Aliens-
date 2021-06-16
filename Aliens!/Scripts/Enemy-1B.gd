@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 50
+const Speed = 0
 export var friction = 0.1
 export var acceleration = 0.01
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
@@ -18,15 +18,14 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		return 
-	if lock == false:
-		velocity = position.direction_to(player.position) * Speed
-		velocity = move_and_slide(velocity)
-		if direction.length() > 0:
-			velocity = lerp(velocity, direction.normalized() * Speed, acceleration)
-		else:
-			velocity = lerp(velocity, Vector2.ZERO, friction)
-		velocity = move_and_slide(velocity)
-		look_at(player.position)
+	velocity = position.direction_to(player.position) * Speed
+	velocity = move_and_slide(velocity)
+	if direction.length() > 0:
+		velocity = lerp(velocity, direction.normalized() * Speed, acceleration)
+	else:
+		velocity = lerp(velocity, Vector2.ZERO, friction)
+	velocity = move_and_slide(velocity)
+	look_at(player.position)
 
 
 
@@ -51,8 +50,8 @@ func _on_Ouch_body_entered(body: Node) -> void:
 func _on_Visibility_body_entered(body):
 	if player != self:
 		player = body
-	else:
-		player = null
+
+
 
 func _on_Timer_timeout():
 	if player != null:

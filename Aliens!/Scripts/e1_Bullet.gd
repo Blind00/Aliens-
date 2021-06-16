@@ -10,9 +10,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _ready():
-	look_at(player.global_position)
-	
-	
+	add_to_group("ene")
+	pass
+
+
 
 func _physics_process(delta):
 	

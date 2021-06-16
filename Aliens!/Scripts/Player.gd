@@ -65,7 +65,6 @@ func shoot():
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 
-
-func _on_Area2D_body_entered(body):
-	if "Enemy-1B" and "Enemy-2B" in body.name:
+func _on_Ouch_body_entered(body):
+	if body.is_in_group("ene"):
 		kill()

@@ -40,6 +40,6 @@ func DeathSpawn():
 
 func _on_Enemy2B_body_entered(body):
 	if "p_Bullet"  in body.name:
-		DeathSpawn()
+		#DeathSpawn()
 		queue_free()
 
