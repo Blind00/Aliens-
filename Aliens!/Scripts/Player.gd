@@ -1,18 +1,17 @@
 extends KinematicBody2D
 
-func _ready():
-	pass 
-	add_to_group("player")
-	yield(get_tree(),"idle_frame")
-	get_tree().call_group("ene","set_player",self)
-
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
-var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
-var velocity = Vector2()
 export var bspeed = 50
 
+var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
+var velocity = Vector2()
+
+func _ready():
+	add_to_group("player")
+	yield(get_tree(),"idle_frame")
+	get_tree().call_group("ene","set_player",self)
 
 func get_input():
 	var input = Vector2()
@@ -40,7 +39,6 @@ func get_input():
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
 	return input
-
 # warning-ignore:unused_argument
 func _physics_process(delta):
 	var direction = get_input()
@@ -52,7 +50,7 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	get_input()
 
-func kill():
+func dead():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
@@ -61,10 +59,10 @@ func shoot():
 	owner.add_child(las)
 	las.transform = $Gun.global_transform
 
-
 func get_time():
 	return OS.get_ticks_msec()/1000.0
 
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
-		kill()
+		print('Hit!')
+		dead()

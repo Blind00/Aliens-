@@ -1,20 +1,20 @@
 extends KinematicBody2D
 
-const Speed = 0
+const Speed = 10
+
 export var friction = 0.1
 export var acceleration = 0.01
-var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
+export var bspeed = 1000
+
 onready var player = get_parent().get_node("Player")
+
+var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
-export var bspeed = 500
-var lock = false
-
-
 
 func _ready():
 	add_to_group("ene")
-	
+
 func _physics_process(_delta):
 	if player == null:
 		return 
@@ -27,17 +27,11 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity)
 	look_at(player.position)
 
-
-
-		
 func shoot():
 	var las = bullet_scene.instance()
 	las.global_transform = $Gun.global_transform
-	las.player = player
 	get_parent().add_child(las)
-	$Timer.set_wait_time(1)
-	
-
+	$Timer.set_wait_time(0.5)
 
 func set_player(p):
 	player=p
@@ -45,13 +39,6 @@ func set_player(p):
 func _on_Ouch_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()
-
-
-func _on_Visibility_body_entered(body):
-	if player != self:
-		player = body
-
-
 
 func _on_Timer_timeout():
 	if player != null:

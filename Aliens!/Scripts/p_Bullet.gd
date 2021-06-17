@@ -7,8 +7,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _physics_process(delta):
 	position += transform.x * speed * delta
-	
-
 
 func _on_p_Bullet_body_entered(body):
 	if body.is_in_group("ene"):
