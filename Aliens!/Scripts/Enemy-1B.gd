@@ -42,5 +42,4 @@ func _on_Ouch_body_entered(body: Node) -> void:
 
 func _on_Timer_timeout():
 	if player != null:
-		print("shooting")
 		shoot()

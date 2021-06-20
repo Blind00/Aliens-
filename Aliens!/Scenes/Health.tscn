@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/HBoxContainer.gd" type="Script" id=1]
+[ext_resource path="res://Bars/HPBars1_0100_Package-----------------.png" type="Texture" id=2]
+
+[node name="Health" type="HBoxContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="TextureRect" parent="."]
+margin_right = 160.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+stretch_mode = 3
+
+[node name="2" type="TextureRect" parent="."]
+margin_left = 164.0
+margin_right = 324.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+stretch_mode = 3
+
+[node name="3" type="TextureRect" parent="."]
+margin_left = 328.0
+margin_right = 488.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+stretch_mode = 3

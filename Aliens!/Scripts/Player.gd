@@ -52,7 +52,8 @@ func _physics_process(delta):
 
 func dead():
 # warning-ignore:return_value_discarded
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	pass
 
 func shoot():
 	var las = laser_bolt.instance()
@@ -65,4 +66,4 @@ func get_time():
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
 		print('Hit!')
-		dead()
+		#dead() 
