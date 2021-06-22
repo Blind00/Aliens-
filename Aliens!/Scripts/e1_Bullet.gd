@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 var speed = 10
 var move =  Vector2.ZERO
@@ -8,7 +8,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _ready():
 	add_to_group("ene")
-	pass
 
 func _physics_process(delta):
 	position += transform.x * speed

@@ -33,9 +33,6 @@ func shoot():
 	get_parent().add_child(las)
 	$Timer.set_wait_time(0.5)
 
-func set_player(p):
-	player=p
-
 func _on_Ouch_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()

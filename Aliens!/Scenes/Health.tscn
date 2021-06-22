@@ -4,7 +4,6 @@
 [ext_resource path="res://Bars/HPBars1_0100_Package-----------------.png" type="Texture" id=2]
 
 [node name="Health" type="HBoxContainer"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )

@@ -5,6 +5,8 @@ export var friction = 0.01
 export var acceleration = 0.01
 export var bspeed = 50
 
+onready var screen_size = get_viewport_rect().size
+
 var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
 
@@ -50,9 +52,9 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	get_input()
 
-func dead():
+func dead(): 
 # warning-ignore:return_value_discarded
-	#get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
 	pass
 
 func shoot():
@@ -66,4 +68,4 @@ func get_time():
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
 		print('Hit!')
-		#dead() 
+		dead() 

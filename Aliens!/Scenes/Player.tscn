@@ -312,7 +312,7 @@ scale = Vector2( 0.5, 0.33 )
 texture = ExtResource( 3 )
 
 [node name="ThrustPart2" type="CPUParticles2D" parent="Sprites/b2_06"]
-position = Vector2( -1.69283, -45.6218 )
+position = Vector2( 2.84749, -47.1201 )
 rotation = -5.4186e-06
 scale = Vector2( 2, 3.0303 )
 emitting = false
