@@ -5,7 +5,8 @@ const Speed = 50
 export var friction = 0.1
 export var acceleration = 0.01
 
-var player = null
+onready var player = get_parent().get_node("Player")
+
 var velocity = Vector2.ZERO
 var direction = velocity
 

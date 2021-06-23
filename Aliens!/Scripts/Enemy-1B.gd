@@ -1,21 +1,25 @@
 extends KinematicBody2D
 
-const Speed = 10
+const Speed = 30
+
 
 export var friction = 0.1
 export var acceleration = 0.01
-export var bspeed = 1000
 
 onready var player = get_parent().get_node("Player")
 
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
+var lockspeed = false
+
 
 func _ready():
 	add_to_group("ene")
+	get_parent().get_node("Player")
 
 func _physics_process(_delta):
+	lockspeed = false
 	if player == null:
 		return 
 	velocity = position.direction_to(player.position) * Speed
@@ -31,12 +35,11 @@ func shoot():
 	var las = bullet_scene.instance()
 	las.global_transform = $Gun.global_transform
 	get_parent().add_child(las)
-	$Timer.set_wait_time(0.5)
+	$Timer.set_wait_time(1)
 
 func _on_Ouch_body_entered(body: Node) -> void:
 	if "p_Bullet" in body.name:
 		queue_free()
 
 func _on_Timer_timeout():
-	if player != null:
-		shoot()
+	shoot()

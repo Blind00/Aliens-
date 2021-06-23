@@ -3,7 +3,6 @@ extends KinematicBody2D
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
-export var bspeed = 50
 
 onready var screen_size = get_viewport_rect().size
 
@@ -41,7 +40,7 @@ func get_input():
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
 	return input
-# warning-ignore:unused_argument
+
 func _physics_process(delta):
 	var direction = get_input()
 	if direction.length() > 0:
@@ -53,7 +52,6 @@ func _physics_process(delta):
 	get_input()
 
 func dead(): 
-# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 	pass
 

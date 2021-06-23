@@ -4,8 +4,6 @@ var ene2 = preload("res://Scenes/Enemy-2B.tscn")
 var ene1 = preload("res://Scenes/Enemy-1B.tscn")
 
 func _ready():
-	$WaveOne.set_wait_time(5)
-	$WaveOne.start()
 	$AnimationPlayer.play("Spawn Idle")
 
 # e is Enemy-1B 
@@ -94,7 +92,9 @@ func WaveThree():
 
 func _on_WaveOne_timeout():
 	WaveOne()
+
 func _on_WaveTwo_timeout():
 	WaveTwo()
+
 func _on_WaveThree_timeout():
 	WaveThree()
