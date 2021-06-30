@@ -11,15 +11,12 @@ onready var player = get_parent().get_node("Player")
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
-var lockspeed = false
-
 
 func _ready():
 	add_to_group("ene")
 	get_parent().get_node("Player")
 
 func _physics_process(_delta):
-	lockspeed = false
 	if player == null:
 		return 
 	velocity = position.direction_to(player.position) * Speed

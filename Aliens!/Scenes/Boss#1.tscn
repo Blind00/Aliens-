@@ -4,11 +4,11 @@
 [ext_resource path="res://Scripts/Boss#1.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 19.2354
+radius = 47.4737
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 41.7612
-height = 0.0
+radius = 42.6425
+height = 108.797
 
 [node name="Boss" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -20,11 +20,22 @@ shape = SubResource( 1 )
 [node name="Boss#1" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 231.672, -74.4134 )
+position = Vector2( 70.7335, 232.203 )
+rotation = 1.5708
 texture = ExtResource( 1 )
 offset = Vector2( -230.173, 78.1355 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Ouch" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ouch"]
+position = Vector2( 1, 0 )
 shape = SubResource( 2 )
+
+[node name="Gun" type="Position2D" parent="."]
+position = Vector2( 51.072, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
