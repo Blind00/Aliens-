@@ -25,12 +25,12 @@ func _physics_process(_delta):
 	look_at(player.position)
 
 func shoot():
-	for i in range (10):
+	for i in range (5):
 		var las = bullet_scene.instance()
 		las.global_transform = $Gun.global_transform
 		get_parent().add_child(las)
-		$Timer.set_wait_time(1)
-		print("shooting")
+		$Timer.set_wait_time(5)
+	print("shooting 5")
 
 
 func _on_Ouch_body_entered(body):

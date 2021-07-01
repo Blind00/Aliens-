@@ -5,8 +5,8 @@ export var friction = 0.01
 export var acceleration = 0.01
 
 onready var screen_size = get_viewport_rect().size
-
-var laser_bolt = preload("res://Scenes/p_Bullet.tscn")
+var laser_bolt = preload("res://Scenes/P_Laser.tscn")
+var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
 
 func _ready():
@@ -37,8 +37,11 @@ func get_input():
 		$Sprites/b2_05/ThrustPart1.emitting = false
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
+	if Input.is_action_just_pressed("Ability"):
+		shootAbility()
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
+	
 	return input
 
 func _physics_process(delta):
@@ -55,6 +58,11 @@ func dead():
 	get_tree().reload_current_scene()
 	pass
 
+func shootAbility():
+	var abi = ability.instance()
+	owner.add_child(abi)
+	abi.transform = $Gun.global_transform
+
 func shoot():
 	var las = laser_bolt.instance()
 	owner.add_child(las)
@@ -67,3 +75,4 @@ func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
 		print('Hit!')
 		dead() 
+
