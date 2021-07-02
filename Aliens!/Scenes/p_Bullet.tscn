@@ -1,23 +1,21 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GreatSpaceAsset/Air Units, Ships/Sheets + EXTRA ITEMS/Powerup, Weapon, Bullets, Points, Life, Extra/Object_Category_2_43.png" type="Texture" id=1]
+[ext_resource path="res://GreatSpaceAsset/Air Units, Ships/Sheets + EXTRA ITEMS/Powerup, Weapon, Bullets, Points, Life, Extra/Object_Category_1_96.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/p_Bullet.gd" type="Script" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 24.5651
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.625, 2.70833 )
 
 [node name="p_Bullet" type="Area2D"]
+rotation = 3.14159
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-offset = Vector2( -2.16912, -2.33597 )
+offset = Vector2( -0.18262, -2.33597 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-
 [connection signal="body_entered" from="." to="." method="_on_p_Bullet_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

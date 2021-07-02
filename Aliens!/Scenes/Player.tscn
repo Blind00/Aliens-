@@ -329,7 +329,10 @@ hue_variation = 0.04
 hue_variation_random = 0.53
 
 [node name="Gun" type="Position2D" parent="."]
-position = Vector2( 48.8595, 0 )
+position = Vector2( 52.5676, 0 )
+
+[node name="Shield" type="Position2D" parent="."]
+position = Vector2( 52.5676, 0 )
 
 [node name="Ouch" type="Area2D" parent="."]
 

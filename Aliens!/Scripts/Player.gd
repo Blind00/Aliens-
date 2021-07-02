@@ -61,7 +61,7 @@ func dead():
 func shootAbility():
 	var abi = ability.instance()
 	owner.add_child(abi)
-	abi.transform = $Gun.global_transform
+	abi.transform = $Shield.global_transform
 
 func shoot():
 	var las = laser_bolt.instance()

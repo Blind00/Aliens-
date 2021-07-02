@@ -16,14 +16,11 @@ func _ready():
 
 func _physics_process(_delta):
 	if player == null:
+		return
 		player = get_tree().get_nodes_in_group("Player")[0]
 		print("Player Finding")
-		return
 	look_at(player.position)
 	position += transform.x * Speed  * _delta
-
-func set_player(p):
-	player=p
 
 func _on_Enemy2B_body_entered(body):
 	if body.is_in_group("P"):
