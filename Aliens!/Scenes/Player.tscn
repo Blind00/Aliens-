@@ -333,6 +333,7 @@ position = Vector2( 52.5676, 0 )
 
 [node name="Shield" type="Position2D" parent="."]
 position = Vector2( 52.5676, 0 )
+rotation = 1.5708
 
 [node name="Ouch" type="Area2D" parent="."]
 

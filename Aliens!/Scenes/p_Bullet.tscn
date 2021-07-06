@@ -4,11 +4,10 @@
 [ext_resource path="res://Scripts/p_Bullet.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.625, 2.70833 )
+extents = Vector2( 23.4264, 7.76575 )
 
 [node name="p_Bullet" type="Area2D"]
-rotation = 3.14159
-scale = Vector2( 0.3, 0.3 )
+rotation = 1.5708
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -16,6 +15,12 @@ texture = ExtResource( 1 )
 offset = Vector2( -0.18262, -2.33597 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.175179, -2.97818 )
 shape = SubResource( 1 )
 
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_p_Bullet_body_entered"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]

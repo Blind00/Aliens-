@@ -15,7 +15,6 @@ var shooting = false
 var lock_on = false
 var steering_force = 50.0
 
-
 func _ready():
 	pass
 	add_to_group("ene")
@@ -33,15 +32,6 @@ func shoot():
 		var las = bullet_scene.instance()
 		las.global_transform = $Gun.global_transform
 		get_parent().add_child(las)
-		
-		
-	for i in range (2):
-		var las = bullet_scene.instance()
-		las.global_transform = $Gun2.global_transform
-		get_parent().add_child(las)
-		$Timer.set_wait_time(5)
-	print("shooting 5")
-
 
 func _on_Visibility_body_entered(body):
 	if body.is_in_group("Player"):
