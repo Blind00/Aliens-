@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 250
+var Speed = 250
 
 export var friction = 0.1
 export var acceleration = 0.01
@@ -17,7 +17,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if player == null:
-		return
+		pass 
 	position += transform.x * Speed  * _delta
 	look_at(player.position)
 
@@ -27,10 +27,6 @@ func shoot():
 		las.global_transform = $Gun.global_transform
 		get_parent().add_child(las)
 		$Timer.set_wait_time(1)
-
-func _on_Ouch_body_entered(body: Node) -> void:
-	if "p_Bullet" in body.name:
-		queue_free()
 
 func _on_Timer_timeout():
 		shoot()

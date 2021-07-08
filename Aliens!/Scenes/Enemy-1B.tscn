@@ -1,13 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GreatSpaceAsset/Air Units, Ships/CoreDefender_F_NightMare_Scarlet_209x182.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy-1B.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 33.6471
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 97.9233
 
 [node name="Enemy-1B" type="KinematicBody2D"]
 position = Vector2( -0.0297241, -0.0177917 )
@@ -24,16 +21,10 @@ flip_v = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Ouch" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ouch"]
-shape = SubResource( 2 )
-
 [node name="Gun" type="Position2D" parent="."]
 position = Vector2( 72.7555, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
