@@ -15,7 +15,6 @@ func WaveOne():
 		var e = ene2.instance()
 		get_tree().get_root().add_child(e)
 		e.global_position = $Portal.global_position
-	
 
 func WaveTwo():
 	for i in range (3):
