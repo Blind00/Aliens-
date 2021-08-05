@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 50
-
-export var friction = 0.1
-export var acceleration = 0.05
+const Speed = 100
 
 onready var player = get_parent().get_node("Player")
 

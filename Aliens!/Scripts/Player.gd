@@ -9,7 +9,8 @@ onready var screen_size = get_viewport_rect().size
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-
+var shield = true
+var moving = false
 
 func _ready():
 	add_to_group("player")
@@ -20,30 +21,23 @@ func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('Right'):
 		input.x += 1
-		$Sprites/b2_06/ThrustPart2.emitting = true
-	else:
-		$Sprites/b2_06/ThrustPart2.emitting = false
+		moving = true
 	if Input.is_action_pressed('Left'):
 		input.x -= 1
-		$Sprites/b2_05/ThrustPart1.emitting = true
-	else:
-		$Sprites/b2_05/ThrustPart1.emitting = false
+		moving = true
 	if Input.is_action_pressed("Down"):
 		input.y +=1
+		moving = true
 	if Input.is_action_pressed("Up"):
 		input.y -=1
-		$Sprites/b2_05/ThrustPart1.emitting = true
-		$Sprites/b2_06/ThrustPart2.emitting = true
-	else:
-		$Sprites/b2_06/ThrustPart2.emitting = false
-		$Sprites/b2_05/ThrustPart1.emitting = false
+		moving = true
 	if Input.is_action_just_pressed("Shoot"):
 		shoot()
-	if Input.is_action_pressed("Ability"):
-		shootAbility()
+	if Input.is_action_just_pressed("Ability"):
+		Ability()
+		shield()
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
-	
 	return input
 
 func _physics_process(delta):
@@ -56,11 +50,21 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	get_input()
 
+func shield():
+	if shield == true:
+		$ShieldTimer.start()
+		shield = false
+
+func moving():
+	if moving == true:
+		$Sprites/b2_05/ThrustPart1.emitting = true
+		$Sprites/b2_06/ThrustPart2.emitting = true
+
 func dead(): 
 	get_tree().reload_current_scene()
 	pass
 
-func shootAbility():
+func Ability():
 	var abi = ability.instance()
 	add_child(abi)
 	abi.transform = $Shield.transform
@@ -77,4 +81,6 @@ func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
 		print('Hit!')
 		dead() 
-
+ 
+func _on_ShieldTimer_timeout():
+	shield = true

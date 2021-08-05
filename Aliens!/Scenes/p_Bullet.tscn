@@ -18,9 +18,8 @@ offset = Vector2( -0.18262, -2.33597 )
 position = Vector2( 0.175179, -2.97818 )
 shape = SubResource( 1 )
 
-[node name="LifeTime" type="Timer" parent="CollisionShape2D"]
-wait_time = 0.5
+[node name="LifeTime" type="Timer" parent="."]
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_p_Bullet_body_entered"]
-[connection signal="timeout" from="CollisionShape2D/LifeTime" to="." method="_on_LifeTime_timeout"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_LifeTime_timeout"]

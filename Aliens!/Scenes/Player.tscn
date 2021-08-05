@@ -341,4 +341,9 @@ rotation = 1.5708
 rotation = -1.5708
 shape = SubResource( 7 )
 
+[node name="ShieldTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
