@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var speed = 700
+var speed = 1100
 
 func _ready():
-	add_to_group("ene")
+	add_to_group("b")
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

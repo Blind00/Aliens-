@@ -4,13 +4,12 @@ export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
 
-onready var screen_size = get_viewport_rect().size
-
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-var shield = true
+var can_shield = true
 var moving = false
+var shield_up = false
 
 func _ready():
 	add_to_group("player")
@@ -32,10 +31,14 @@ func get_input():
 		input.y -=1
 		moving = true
 	if Input.is_action_just_pressed("Shoot"):
-		shoot()
+		if shield_up == true:
+			pass
+		else:
+			shoot()
 	if Input.is_action_just_pressed("Ability"):
 		Ability()
 		shield()
+		$ShieldLifeTime.start()
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
 	return input
@@ -51,9 +54,9 @@ func _physics_process(delta):
 	get_input()
 
 func shield():
-	if shield == true:
+	if can_shield == true:
 		$ShieldTimer.start()
-		shield = false
+		can_shield = false
 
 func moving():
 	if moving == true:
@@ -68,6 +71,7 @@ func Ability():
 	var abi = ability.instance()
 	add_child(abi)
 	abi.transform = $Shield.transform
+	shield_up = true
 
 func shoot():
 	var las = laser_bolt.instance()
@@ -78,9 +82,15 @@ func get_time():
 	return OS.get_ticks_msec()/1000.0
 
 func _on_Ouch_body_entered(body):
-	if body.is_in_group("ene"):
-		print('Hit!')
+	if body.is_in_group("b"):
+		print('Hit! by bullet')
 		dead() 
+	if body.is_in_group("ene"):
+		print("Hit! by Enemy")
+		dead()
  
 func _on_ShieldTimer_timeout():
-	shield = true
+	can_shield = true
+
+func _on_ShieldLifeTime_timeout():
+	shield_up = false

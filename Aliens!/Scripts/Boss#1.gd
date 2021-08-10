@@ -9,8 +9,8 @@ export var bspeed = 500
 var bullet_scene = load("res://Scenes/B_bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
-var run_away = false
 var can_shoot = true
+var bomb_scene = preload("res://Scenes/B_Bomb.tscn")
 
 func _ready():
 	pass
@@ -19,21 +19,37 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		return 
-	if run_away == true:
 		look_at(player.position)
 		position += transform.x * Speed  * _delta
 
 func shoot():
 	if can_shoot == true:
-		for i in range (2):
+		for i in range (3):
 			var las = bullet_scene.instance()
 			las.global_transform = $Gun.global_transform
 			get_parent().add_child(las)
 			can_shoot = false
-			$Timer.start()
+			
+		for i in range (3):
+			var las = bullet_scene.instance()
+			las.global_transform = $Gun2.global_transform
+			get_parent().add_child(las)
+			can_shoot = false
+			$Shoot_Timer.start
 
-func _on_Timer_timeout():
-	pass
+func bomb():
+	for i in range(4):
+		var b = bomb_scene.instance()
+		b.global_transform = $Gun.global_transform
+		get_parent().add_child(b)
+		
+	for i in range(4):
+		var b = bomb_scene.instance()
+		b.global_transform = $Gun2.global_transform
+		get_parent().add_child(b)
+
+func _on_Bomb_Timer_timeout():
+	bomb()
 
 func Raycast():
 	if $RayCast2D.is_colliding("Player"):
@@ -41,7 +57,6 @@ func Raycast():
 		$Timer.start()
 	else:
 		$Timer.stop()
-
-func _on_Run_Away_mouse_entered():
-	run_away = true
-	
+		
+func _on_Shoot_Timer_timeout():
+	can_shoot = true

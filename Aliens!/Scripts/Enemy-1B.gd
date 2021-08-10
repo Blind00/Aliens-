@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var Speed = 250
+var Speed = 350
 
 export var friction = 0.1
 export var acceleration = 0.01
@@ -22,12 +22,14 @@ func _physics_process(_delta):
 	look_at(player.position)
 
 func shoot():
-	for i in range (3):
-		var las = bullet_scene.instance()
-		las.global_transform = $Gun.global_transform
-		get_parent().add_child(las)
-		$Timer.set_wait_time(1)
+	var las = bullet_scene.instance()
+	las.global_transform = $Gun.global_transform
+	get_parent().add_child(las)
+	$Timer.set_wait_time(1)
 
 func _on_Timer_timeout():
 		shoot()
 
+func _on_DeathCircle_body_entered(body):
+	if body.is_in_group("Player"):
+		queue_free()
