@@ -24,6 +24,7 @@ flip_v = true
 shape = SubResource( 1 )
 
 [node name="Gun" type="Position2D" parent="."]
+visible = false
 position = Vector2( 73.5421, 0 )
 
 [node name="Timer" type="Timer" parent="."]

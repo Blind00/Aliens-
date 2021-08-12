@@ -17,3 +17,5 @@ texture_progress = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="hide" from="HealthBar" to="." method="_on_HealthBar_hide"]

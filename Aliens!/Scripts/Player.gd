@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
+export (float) var max_health = 100
 
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")

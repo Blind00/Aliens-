@@ -23,3 +23,7 @@ func update_healthbar(value):
 	if value < healthbar.max_value:
 		show()
 	healthbar.value = value
+
+
+func _on_HealthBar_hide():
+	pass # Replace with function body.
