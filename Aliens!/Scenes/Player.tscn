@@ -347,7 +347,6 @@ autostart = true
 
 [node name="ShieldLifeTime" type="Timer" parent="."]
 wait_time = 0.5
-
 [connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
 [connection signal="timeout" from="ShieldLifeTime" to="." method="_on_ShieldLifeTime_timeout"]

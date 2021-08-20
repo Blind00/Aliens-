@@ -52,7 +52,6 @@ func _physics_process(delta):
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 	look_at(get_global_mouse_position())
-	get_input()
 
 func shield():
 	if can_shield == true:
