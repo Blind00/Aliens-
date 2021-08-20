@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/E3.wav-decd85331d635445ebcd6794214a3378.sample"
+
+[deps]
+
+source_file="res://Sound Files/Explosions/Wav/E3.wav"
+dest_files=[ "res://.import/E3.wav-decd85331d635445ebcd6794214a3378.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

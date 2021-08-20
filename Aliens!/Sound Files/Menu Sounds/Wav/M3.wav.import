@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/M3.wav-bc5ee027de209a536a2f8d32de6d7e29.sample"
+
+[deps]
+
+source_file="res://Sound Files/Menu Sounds/Wav/M3.wav"
+dest_files=[ "res://.import/M3.wav-bc5ee027de209a536a2f8d32de6d7e29.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

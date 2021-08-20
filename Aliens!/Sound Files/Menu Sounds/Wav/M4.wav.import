@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/M4.wav-c6ad9e004ccb8d32ba697a83d370295a.sample"
+
+[deps]
+
+source_file="res://Sound Files/Menu Sounds/Wav/M4.wav"
+dest_files=[ "res://.import/M4.wav-c6ad9e004ccb8d32ba697a83d370295a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
