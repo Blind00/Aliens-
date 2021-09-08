@@ -90,6 +90,8 @@ func checkshield():
 	if shield_charge == 0:
 		RechargeShield()
 		print("Shield Charge Depleted")
+	if shield_charge != 0:
+		pass
 
 func RechargeShield():
 	$Timers/RechargeShield.start()
