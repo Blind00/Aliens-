@@ -19,6 +19,7 @@ func _physics_process(_delta):
 	if player == null:
 		pass 
 	position += transform.x * Speed  * _delta
+	look_at(player.global_position)
 
 func shoot():
 	var las = bullet_scene.instance()

@@ -34,10 +34,10 @@ __meta__ = {
 }
 
 [node name="Red Sector" type="ColorRect" parent="BG"]
-margin_left = -2248.0
-margin_top = 561.0
-margin_right = 3515.0
-margin_bottom = 2401.0
+margin_left = -2241.27
+margin_top = 557.175
+margin_right = 3521.73
+margin_bottom = 2397.17
 color = Color( 0.0666667, 0.0392157, 0.0392157, 1 )
 __meta__ = {
 "_edit_use_anchors_": false

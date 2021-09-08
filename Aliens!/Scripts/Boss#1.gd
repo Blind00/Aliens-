@@ -4,8 +4,6 @@ const Speed = 20
 
 onready var player = get_parent().get_node("Player")
 
-export var bspeed = 500
-
 var bullet_scene = load("res://Scenes/B_bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
@@ -54,9 +52,9 @@ func _on_Bomb_Timer_timeout():
 func Raycast():
 	if $RayCast2D.is_colliding("Player"):
 		can_shoot = true
-		$Timer.start()
+		$Shoot_Timer.start()
 	else:
-		$Timer.stop()
+		$Shoot_Timer.stop()
 		
 func _on_Shoot_Timer_timeout():
 	can_shoot = true
