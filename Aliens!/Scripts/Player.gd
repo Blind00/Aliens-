@@ -8,48 +8,51 @@ export (float) var max_health = 20
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
-var can_shield = true
-var moving = false
+var shield_able = true
+var can_move = false
 var shield_up = false
-var shield_charge = 5
+var shield_charge = 100
 var laser_charge = 10
 
 func _ready():
 	add_to_group("player")
 	yield(get_tree(),"idle_frame")
 	get_tree().call_group("ene","set_player",self)
+#I forgot what this does
 
 func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('Right'):
 		input.x += 1
-		moving = true
+		can_move = true
 	if Input.is_action_pressed('Left'):
 		input.x -= 1
-		moving = true
+		can_move = true
 	if Input.is_action_pressed("Down"):
 		input.y +=1
-		moving = true
+		can_move = true
 	if Input.is_action_pressed("Up"):
 		input.y -=1
-		moving = true
+		can_move = true
 	if Input.is_action_just_pressed("Shoot"):
 		if shield_up == true:
 			pass
 		else:
 			shoot()
-	if Input.is_action_just_pressed("Ability"):
+	if Input.is_action_just_pressed("Shield"):
 		if shield_charge != 0:
 			Shield()
 			can_shield()
+			print(shield_charge)
 		else:
 			pass
 		$Timers/ShieldLifeTime.start()
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
+		#Pressing "R" will restart the scene
 	return input
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = get_input()
 	if direction.length() > 0:
 		velocity = lerp(velocity, direction.normalized() * speed, acceleration)
@@ -59,12 +62,12 @@ func _physics_process(delta):
 	look_at(get_global_mouse_position())
 
 func can_shield():
-	if can_shield == true:
+	if shield_able == true:
 		$Timers/ShieldTimer.start()
-		can_shield = false
+		shield_able = false
 
 func moving():
-	if moving == true:
+	if can_move == true:
 		$Sprites/b2_05/ThrustPart1.emitting = true
 		$Sprites/b2_06/ThrustPart2.emitting = true
 
@@ -77,14 +80,16 @@ func checkdeath():
 func dead(): 
 	get_tree().reload_current_scene()
 	pass
+#If I die the scene reloads
 
 func Shield():
-	shield_charge -= 1
+	shield_charge -= 20
 	var abi = ability.instance()
 	add_child(abi)
 	abi.transform = $Shield.transform
 	shield_up = true
 	checkshield()
+#Using the shield takes a charge and appears in front of the ship
 
 func checkshield():
 	if shield_charge == 0:
@@ -93,8 +98,11 @@ func checkshield():
 	if shield_charge != 0:
 		pass
 
+
 func RechargeShield():
 	$Timers/RechargeShield.start()
+#When the shield charge depletes a timer starts
+#When the timer stops it recharges some charges
 
 func shoot():
 	var las = laser_bolt.instance()
@@ -119,7 +127,7 @@ func _on_Ouch_body_entered(body):
 		checkdeath()
  
 func _on_ShieldTimer_timeout():
-	can_shield = true
+	shield_able = true
 
 func _on_ShieldLifeTime_timeout():
 	shield_up = false
@@ -128,5 +136,5 @@ func _on_CheckDeath_timeout():
 	checkdeath()
 
 func _on_RechargeShield_timeout():
-	shield_charge = 5
+	shield_charge = 20
 	print("Shield Recharged!")
