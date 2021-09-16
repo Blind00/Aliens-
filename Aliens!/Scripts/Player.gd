@@ -15,7 +15,7 @@ var shield_charge = 100
 var laser_charge = 10
 
 func _ready():
-	add_to_group("player")
+	add_to_group("P")
 	yield(get_tree(),"idle_frame")
 	get_tree().call_group("ene","set_player",self)
 #I forgot what this does
@@ -98,7 +98,6 @@ func checkshield():
 	if shield_charge != 0:
 		pass
 
-
 func RechargeShield():
 	$Timers/RechargeShield.start()
 #When the shield charge depletes a timer starts
@@ -125,6 +124,7 @@ func _on_Ouch_body_entered(body):
 		print("Hit! by bomb")
 		max_health -= 5
 		checkdeath()
+
  
 func _on_ShieldTimer_timeout():
 	shield_able = true

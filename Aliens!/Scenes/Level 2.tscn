@@ -72,6 +72,6 @@ position = Vector2( -1.18933, 1.93579 )
 current = true
 zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
-smoothing_speed = 0.5
+smoothing_speed = 2.0
 
-[node name="RigidBody2D" parent="." instance=ExtResource( 3 )]
+[node name="Area2D2" parent="." instance=ExtResource( 3 )]

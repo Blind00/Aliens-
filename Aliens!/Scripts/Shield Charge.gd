@@ -1,11 +1,11 @@
-extends RigidBody2D
+extends Area2D
 
-var speed = 5
-var r = 2
+signal Charge
 
 func _ready():
-	pass
+	add_to_group("C")
 
-func _physics_process(_delta):
-	self.rotation_degrees = r
-	
+func _on_Area2D2_body_entered(body):
+	if body.is_in_group("P"):
+		emit_signal("Charge")
+		queue_free()

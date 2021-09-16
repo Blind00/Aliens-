@@ -2,9 +2,6 @@ extends KinematicBody2D
 
 var Speed = 350
 
-export var friction = 0.1
-export var acceleration = 0.01
-
 onready var player = get_parent().get_node("Player")
 
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
@@ -31,5 +28,5 @@ func _on_Timer_timeout():
 		shoot()
 
 func _on_DeathCircle_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("P"):
 		queue_free()
