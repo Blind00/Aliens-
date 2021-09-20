@@ -1,18 +1,16 @@
 extends KinematicBody2D
 
 export var speed = 200
-export var friction = 0.01
+export var friction = 0.001
 export var acceleration = 0.01
-export (float) var max_health = 20
+export (float) var max_health = 5
 
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
 var shield_able = true
-var can_move = false
 var shield_up = false
-var shield_charge = 100
-var laser_charge = 10
+var shield_charge = 10
 
 func _ready():
 	add_to_group("P")
@@ -24,16 +22,12 @@ func get_input():
 	var input = Vector2()
 	if Input.is_action_pressed('Right'):
 		input.x += 1
-		can_move = true
 	if Input.is_action_pressed('Left'):
 		input.x -= 1
-		can_move = true
 	if Input.is_action_pressed("Down"):
 		input.y +=1
-		can_move = true
 	if Input.is_action_pressed("Up"):
 		input.y -=1
-		can_move = true
 	if Input.is_action_just_pressed("Shoot"):
 		if shield_up == true:
 			pass
@@ -66,11 +60,6 @@ func can_shield():
 		$Timers/ShieldTimer.start()
 		shield_able = false
 
-func moving():
-	if can_move == true:
-		$Sprites/b2_05/ThrustPart1.emitting = true
-		$Sprites/b2_06/ThrustPart2.emitting = true
-
 func checkdeath():
 	if max_health == 0:
 		dead()
@@ -83,7 +72,7 @@ func dead():
 #If I die the scene reloads
 
 func Shield():
-	shield_charge -= 20
+	shield_charge -= 1
 	var abi = ability.instance()
 	add_child(abi)
 	abi.transform = $Shield.transform
@@ -118,14 +107,13 @@ func _on_Ouch_body_entered(body):
 		checkdeath()
 	if body.is_in_group("ene"):
 		print("Hit! by Enemy")
-		max_health -= 10
+		max_health -= 9
 		checkdeath()
 	if body.is_in_group("B"):
 		print("Hit! by bomb")
-		max_health -= 5
+		max_health -= 10
 		checkdeath()
 
- 
 func _on_ShieldTimer_timeout():
 	shield_able = true
 
@@ -136,5 +124,8 @@ func _on_CheckDeath_timeout():
 	checkdeath()
 
 func _on_RechargeShield_timeout():
-	shield_charge = 20
+	shield_charge = 5
 	print("Shield Recharged!")
+	print(shield_charge)
+
+
