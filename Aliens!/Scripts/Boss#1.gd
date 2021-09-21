@@ -9,6 +9,7 @@ var velocity = Vector2.ZERO
 var direction = velocity
 var can_shoot = true
 var bomb_scene = preload("res://Scenes/B_Bomb.tscn")
+var max_health = 100
 
 func _ready():
 	pass
@@ -49,12 +50,17 @@ func bomb():
 func _on_Bomb_Timer_timeout():
 	bomb()
 
-func Raycast():
-	if $RayCast2D.is_colliding("Player"):
-		can_shoot = true
-		$Shoot_Timer.start()
-	else:
-		$Shoot_Timer.stop()
-		
 func _on_Shoot_Timer_timeout():
 	can_shoot = true
+
+func checkdeath():
+	if max_health < 1:
+		queue_free()
+	else:
+		pass
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("P"):
+		max_health -= 2
+		print(max_health)
+		checkdeath()

@@ -61,7 +61,7 @@ func can_shield():
 		shield_able = false
 
 func checkdeath():
-	if max_health == 0:
+	if max_health < 1:
 		dead()
 	else: 
 		pass
@@ -81,7 +81,7 @@ func Shield():
 #Using the shield takes a charge and appears in front of the ship
 
 func checkshield():
-	if shield_charge == 0:
+	if shield_charge < 1:
 		RechargeShield()
 		print("Shield Charge Depleted")
 	if shield_charge != 0:
@@ -97,22 +97,20 @@ func shoot():
 	owner.add_child(las)
 	las.transform = $Gun.global_transform
 
-func get_time():
-	return OS.get_ticks_msec()/1000.0
-
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("b"):
 		print('Hit! by bullet')
-		max_health -= 2
+		max_health -= 1
 		checkdeath()
 	if body.is_in_group("ene"):
 		print("Hit! by Enemy")
-		max_health -= 9
+		max_health -= 2
 		checkdeath()
 	if body.is_in_group("B"):
 		print("Hit! by bomb")
-		max_health -= 10
+		max_health -= 3
 		checkdeath()
+	print(max_health)
 
 func _on_ShieldTimer_timeout():
 	shield_able = true
@@ -127,5 +125,3 @@ func _on_RechargeShield_timeout():
 	shield_charge = 5
 	print("Shield Recharged!")
 	print(shield_charge)
-
-

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 100
+var Speed = 100
 
 onready var player = get_parent().get_node("Player")
 
@@ -22,3 +22,7 @@ func _physics_process(_delta):
 func _on_Enemy2B_body_entered(body):
 	if body.is_in_group("P"):
 		queue_free()
+
+func _on_Speed_timeout():
+	Speed += 100
+	print('Start Speed')

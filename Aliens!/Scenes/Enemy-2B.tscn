@@ -7,7 +7,7 @@
 radius = 10.5449
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 12.6485
+radius = 8.78575
 
 [node name="Enemy-2B" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -29,4 +29,9 @@ texture = ExtResource( 1 )
 offset = Vector2( -3.63798e-12, 5.24908 )
 flip_v = true
 
+[node name="Speed" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Enemy-2B" to="." method="_on_Enemy2B_body_entered"]
+[connection signal="timeout" from="Speed" to="." method="_on_Speed_timeout"]
