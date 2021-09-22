@@ -18,8 +18,8 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		return 
-		look_at(player.position)
-		position += transform.x * Speed  * _delta
+	look_at(player.position)
+	position += transform.x * Speed  * _delta
 
 func shoot():
 	if can_shoot == true:
@@ -62,5 +62,4 @@ func checkdeath():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("P"):
 		max_health -= 2
-		print(max_health)
 		checkdeath()

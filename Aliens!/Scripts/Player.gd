@@ -37,7 +37,6 @@ func get_input():
 		if shield_charge != 0:
 			Shield()
 			can_shield()
-			print(shield_charge)
 		else:
 			pass
 		$Timers/ShieldLifeTime.start()
@@ -79,6 +78,8 @@ func Shield():
 	shield_up = true
 	checkshield()
 #Using the shield takes a charge and appears in front of the ship
+#It will block bullets but it will not last for long
+#If you failed to block the bullet or use the shield too late you will get hit 
 
 func checkshield():
 	if shield_charge < 1:
@@ -99,18 +100,14 @@ func shoot():
 
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("b"):
-		print('Hit! by bullet')
 		max_health -= 1
 		checkdeath()
 	if body.is_in_group("ene"):
-		print("Hit! by Enemy")
 		max_health -= 2
 		checkdeath()
 	if body.is_in_group("B"):
-		print("Hit! by bomb")
 		max_health -= 3
 		checkdeath()
-	print(max_health)
 
 func _on_ShieldTimer_timeout():
 	shield_able = true
@@ -123,5 +120,3 @@ func _on_CheckDeath_timeout():
 
 func _on_RechargeShield_timeout():
 	shield_charge = 5
-	print("Shield Recharged!")
-	print(shield_charge)

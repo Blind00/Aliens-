@@ -1,14 +1,11 @@
 extends KinematicBody2D
 
-var speed = 200
-var steer_force = 50.0
+export var speed = 350
+export var steer_force = 50.0
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
-onready var target =  get_parent().get_node("Player")
-
-func _ready():
-	add_to_group("ene")
+onready var target = get_parent().get_node("Player")
 
 func start(_transform, _target):
 	global_transform = _transform
@@ -24,18 +21,21 @@ func seek():
 	return steer
 
 func _physics_process(delta):
-	velocity += seek()
+	acceleration += seek()
 	velocity += acceleration * delta
 	velocity = velocity.clamped(speed)
 	rotation = velocity.angle()
 	position += velocity * delta
 
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
+func _on_Missile_body_entered(body):
+	explode()
 
-func _on_B_bullet_body_entered(body):
-	if body.is_in_group("Player"):
-		$Timer.start()
+func _on_Lifetime_timeout():
+	explode()
 
-func _on_Timer_timeout():
+func explode():
+	$Particles2D.emitting = false
+	set_physics_process(false)
+	$AnimationPlayer.play("explode")
+	yield($AnimationPlayer, "animation_finished")
 	queue_free()
