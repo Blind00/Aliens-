@@ -16,7 +16,11 @@ func _ready():
 	add_to_group("P")
 	yield(get_tree(),"idle_frame")
 	get_tree().call_group("ene","set_player",self)
-#I forgot what this does
+#The way I got damage to work is to assign my character to a group
+#When taking damage, the game looks for an association to a group
+#If it corresponds with what the bullet is allowed to damage
+#I've tried  other ways of doing it but it either didn't tell me how to do things clear enough or that it was beginner-unfriendly
+
 
 func get_input():
 	var input = Vector2()
@@ -39,6 +43,7 @@ func get_input():
 			can_shield()
 		else:
 			pass
+			#Basically it says if Shield Charge is NOT empty then you can use the shield
 		$Timers/ShieldLifeTime.start()
 	if Input.is_action_just_pressed("Restart"):
 		get_tree().reload_current_scene()
@@ -53,6 +58,7 @@ func _physics_process(_delta):
 		velocity = lerp(velocity, Vector2.ZERO, friction)
 	velocity = move_and_slide(velocity)
 	look_at(get_global_mouse_position())
+#A really simple way to get "space physics" that I copy pasted from KidsCanCode
 
 func can_shield():
 	if shield_able == true:
@@ -64,6 +70,7 @@ func checkdeath():
 		dead()
 	else: 
 		pass
+#As the name suggests, it checks whether I'm supposed to be dead
 
 func dead(): 
 	get_tree().reload_current_scene()
@@ -87,16 +94,17 @@ func checkshield():
 		print("Shield Charge Depleted")
 	if shield_charge != 0:
 		pass
+#When the shield charge depletes a timer starts
 
 func RechargeShield():
 	$Timers/RechargeShield.start()
-#When the shield charge depletes a timer starts
 #When the timer stops it recharges some charges
 
 func shoot():
 	var las = laser_bolt.instance()
 	owner.add_child(las)
 	las.transform = $Gun.global_transform
+#This spawns bullets
 
 func _on_Ouch_body_entered(body):
 	if body.is_in_group("b"):
@@ -108,6 +116,9 @@ func _on_Ouch_body_entered(body):
 	if body.is_in_group("B"):
 		max_health -= 3
 		checkdeath()
+		print("Got Hit!")
+		print(max_health)
+#A very basic way to compute health
 
 func _on_ShieldTimer_timeout():
 	shield_able = true

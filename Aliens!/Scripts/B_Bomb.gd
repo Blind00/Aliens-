@@ -12,4 +12,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Area2D_body_entered(body):
-	queue_free()
+	if body.is_in_group("P"):
+		queue_free()
+	else:
+		pass

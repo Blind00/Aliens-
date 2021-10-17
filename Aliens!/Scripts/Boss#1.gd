@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 20
+const Speed = 100
 
 onready var player = get_parent().get_node("Player")
 
@@ -20,44 +20,47 @@ func _physics_process(_delta):
 		return 
 	look_at(player.position)
 	position += transform.x * Speed  * _delta
+#The Boss chases after the player always looking at the player's character
 
 func shoot():
 	if can_shoot == true:
-		for i in range (3):
+		for _i in range (3):
 			var las = bullet_scene.instance()
 			las.global_transform = $Gun.global_transform
 			get_parent().add_child(las)
 			can_shoot = false
 			
-		for i in range (3):
+		for _i in range (3):
 			var las = bullet_scene.instance()
 			las.global_transform = $Gun2.global_transform
 			get_parent().add_child(las)
 			can_shoot = false
-			$Shoot_Timer.start
+			$Shoot_Timer.start()
+#The boss shoots three bullets at the player
 
 func bomb():
-	for i in range(4):
-		var b = bomb_scene.instance()
-		b.global_transform = $Gun.global_transform
-		get_parent().add_child(b)
-		
-	for i in range(4):
-		var b = bomb_scene.instance()
-		b.global_transform = $Gun2.global_transform
-		get_parent().add_child(b)
+	var b = bomb_scene.instance()
+	b.global_transform = $Gun.global_transform
+	get_parent().add_child(b)
+	
+	var b1 = bomb_scene.instance()
+	b1.global_transform= $Gun2.global_transform
+	get_parent().add_child(b1)
+	$Bomb_Timer.start()
+	print("Spawned!")
 
-func _on_Bomb_Timer_timeout():
-	bomb()
-
-func _on_Shoot_Timer_timeout():
-	can_shoot = true
 
 func checkdeath():
 	if max_health < 1:
 		queue_free()
 	else:
 		pass
+
+func _on_Bomb_Timer_timeout():
+	bomb()
+
+func _on_Shoot_Timer_timeout():
+	can_shoot = true
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("P"):
