@@ -4,7 +4,7 @@ const Speed = 100
 
 onready var player = get_parent().get_node("Player")
 
-var bullet_scene = load("res://Scenes/B_bullet.tscn")
+var bullet_scene = preload("res://Scenes/B_bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
 var can_shoot = true
@@ -47,7 +47,7 @@ func bomb():
 	b1.global_transform= $Gun2.global_transform
 	get_parent().add_child(b1)
 	$Bomb_Timer.start()
-	print("Spawned!")
+# Code for instancing the bombs
 
 
 func checkdeath():
@@ -61,6 +61,7 @@ func _on_Bomb_Timer_timeout():
 
 func _on_Shoot_Timer_timeout():
 	can_shoot = true
+	shoot()
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("P"):

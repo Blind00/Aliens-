@@ -39,3 +39,6 @@ func _on_B_bullet_body_entered(body):
 
 func _on_Timer_timeout():
 	queue_free()
+
+func _on_LifeTime_timeout():
+	queue_free()
