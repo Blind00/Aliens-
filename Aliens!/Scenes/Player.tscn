@@ -295,10 +295,10 @@ scale = Vector2( 0.5, 0.33 )
 texture = ExtResource( 3 )
 
 [node name="Gun" type="Position2D" parent="."]
-position = Vector2( 52.5676, 0 )
+position = Vector2( 58.2308, 0 )
 
 [node name="Shield" type="Position2D" parent="."]
-position = Vector2( 52.5676, 0 )
+position = Vector2( 58.2308, 0 )
 rotation = 1.5708
 
 [node name="Ouch" type="Area2D" parent="."]

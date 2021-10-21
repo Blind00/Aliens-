@@ -1,14 +1,14 @@
 extends KinematicBody2D
 
 var speed = 200
-var steer_force = 50.0
+var steer_force = 80.0
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
 onready var target =  get_parent().get_node("Player")
 
 func _ready():
-	add_to_group("ene")
+	add_to_group("b")
 
 func start(_transform, _target):
 	global_transform = _transform
@@ -36,6 +36,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_B_bullet_body_entered(body):
 	if body.is_in_group("Player"):
 		$Timer.start()
+	if body.is_in_group("B"):
+		queue_free()
 
 func _on_Timer_timeout():
 	queue_free()

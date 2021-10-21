@@ -9,7 +9,8 @@ var velocity = Vector2.ZERO
 var direction = velocity
 var can_shoot = true
 var bomb_scene = preload("res://Scenes/B_Bomb.tscn")
-var max_health = 100
+var max_health = 50
+var damage = 2
 
 func _ready():
 	pass
@@ -66,4 +67,3 @@ func _on_Shoot_Timer_timeout():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("P"):
 		max_health -= 2
-		checkdeath()
