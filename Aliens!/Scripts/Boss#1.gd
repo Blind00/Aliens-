@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const Speed = 100
+var Speed = 125
 
 onready var player = get_parent().get_node("Player")
 
@@ -65,5 +65,9 @@ func _on_Shoot_Timer_timeout():
 	shoot()
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("P"):
-		max_health -= 2
+	if "P_Laser" in body.name:
+		max_health -=2
+		print("Hit")
+		body.queue_free()
+
+

@@ -6,7 +6,7 @@ var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
 var Speed = 350
-var max_health = 3
+var max_health = 2
 
 func _ready():
 	add_to_group("ene")
@@ -28,13 +28,12 @@ func _on_Timer_timeout():
 		shoot()
 
 func _on_DeathCircle_body_entered(body):
-	if body.is_in_group("P"):
+	if "P_Laser" in body.name:
 		max_health -= 1
 		checkdeath()
-		print(max_health)
+		body.queue_free()
 
 func checkdeath():
 	if max_health < 1:
 		queue_free()
-	if max_health != 0:
-		pass
+

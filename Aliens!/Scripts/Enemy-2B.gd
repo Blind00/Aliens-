@@ -20,13 +20,14 @@ func _physics_process(_delta):
 	position += transform.x * Speed  * _delta
 
 func _on_Enemy2B_body_entered(body):
-	if body.is_in_group("P"):
+	if "P_Laser" in body.name:
 		max_health -= 1
 		checkdeath()
+		body.queue_free()
 
 func _on_Speed_timeout():
 	Speed += 100
 
 func checkdeath():
-	if max_health > 1:
+	if max_health < 1:
 		queue_free()

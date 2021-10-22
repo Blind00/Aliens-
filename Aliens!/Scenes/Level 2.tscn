@@ -67,20 +67,14 @@ tile_data = PoolIntArray( -6226033, 7, 0, -6160519, 4, 0, -6029426, 4, 0, -60293
 ] instance=ExtResource( 2 )]
 position = Vector2( 437.072, 183.761 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( -1.18933, 1.93579 )
-current = true
-zoom = Vector2( 1.5, 1.5 )
-smoothing_enabled = true
-smoothing_speed = 2.0
-
 [node name="Area2D2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 1.63641 )
+position = Vector2( 268.355, 163.551 )
 
 [node name="Enemy-1B" parent="." instance=ExtResource( 1 )]
-position = Vector2( 293.516, -155.522 )
+position = Vector2( 293.516, 49.9463 )
 
 [node name="Boss" parent="." instance=ExtResource( 5 )]
+position = Vector2( 80.5065, 93.6566 )
 
 [node name="Enemy-2B" parent="." instance=ExtResource( 6 )]
-position = Vector2( 481.376, -16.9897 )
+position = Vector2( 602.925, 49.9463 )

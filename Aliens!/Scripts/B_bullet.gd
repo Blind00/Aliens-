@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-var speed = 200
+var speed = 180
 var steer_force = 80.0
+var can_steer = true
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -35,12 +36,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_B_bullet_body_entered(body):
 	if body.is_in_group("Player"):
-		$Timer.start()
-	if body.is_in_group("B"):
 		queue_free()
-
-func _on_Timer_timeout():
-	queue_free()
 
 func _on_LifeTime_timeout():
 	queue_free()
