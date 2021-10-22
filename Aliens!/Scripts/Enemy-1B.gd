@@ -1,15 +1,12 @@
 extends KinematicBody2D
 
-var Speed = 350
-
-export var friction = 0.1
-export var acceleration = 0.01
-
 onready var player = get_parent().get_node("Player")
 
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
+var Speed = 350
+var max_health = 2
 
 func _ready():
 	add_to_group("ene")
@@ -19,7 +16,7 @@ func _physics_process(_delta):
 	if player == null:
 		pass 
 	position += transform.x * Speed  * _delta
-	look_at(player.position)
+	look_at(player.global_position)
 
 func shoot():
 	var las = bullet_scene.instance()
@@ -31,5 +28,12 @@ func _on_Timer_timeout():
 		shoot()
 
 func _on_DeathCircle_body_entered(body):
-	if body.is_in_group("Player"):
+	if "P_Laser" in body.name:
+		max_health -= 1
+		checkdeath()
+		body.queue_free()
+
+func checkdeath():
+	if max_health < 1:
 		queue_free()
+

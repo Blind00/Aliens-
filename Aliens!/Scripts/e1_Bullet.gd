@@ -12,5 +12,7 @@ func _physics_process(delta):
 	position += transform.x * speed * delta 
 
 func _on_e1_Bullet_body_entered(body):
-	if body.is_in_group("player"):
+	if "Player" in body.name:
+		queue_free()
+	if "P_Laser" in body.name:
 		queue_free()
