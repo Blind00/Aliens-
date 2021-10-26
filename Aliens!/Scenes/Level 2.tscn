@@ -50,7 +50,7 @@ __meta__ = {
 margin_left = -2248.0
 margin_top = -1508.0
 margin_right = -174.0
-margin_bottom = 2401.0
+margin_bottom = 2397.0
 color = Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -66,6 +66,11 @@ tile_data = PoolIntArray( -6226033, 7, 0, -6160519, 4, 0, -6029426, 4, 0, -60293
 "Player",
 ] instance=ExtResource( 2 )]
 position = Vector2( 437.072, 183.761 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 3.0
 
 [node name="Area2D2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 268.355, 163.551 )

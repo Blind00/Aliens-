@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var speed = 180
-var steer_force = 80.0
+var steer_force = 50.0
 var can_steer = true
 
 var velocity = Vector2.ZERO
@@ -25,6 +25,7 @@ func seek():
 	return steer
 
 func _physics_process(delta):
+	acceleration += seek()
 	velocity += seek()
 	velocity += acceleration * delta
 	velocity = velocity.clamped(speed)

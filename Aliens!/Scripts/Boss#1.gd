@@ -25,18 +25,16 @@ func _physics_process(_delta):
 
 func shoot():
 	if can_shoot == true:
-		for _i in range (3):
-			var las = bullet_scene.instance()
-			las.global_transform = $Gun.global_transform
-			get_parent().add_child(las)
-			can_shoot = false
-			
-		for _i in range (3):
-			var las = bullet_scene.instance()
-			las.global_transform = $Gun2.global_transform
-			get_parent().add_child(las)
-			can_shoot = false
-			$Shoot_Timer.start()
+		var las = bullet_scene.instance()
+		las.global_transform = $Gun.global_transform
+		get_parent().add_child(las)
+		can_shoot = false
+	
+		var las1 = bullet_scene.instance()
+		las1.global_transform = $Gun2.global_transform
+		get_parent().add_child(las1)
+		can_shoot = false
+		$Shoot_Timer.start()
 #The boss shoots three bullets at the player
 
 func bomb():
@@ -49,7 +47,6 @@ func bomb():
 	get_parent().add_child(b1)
 	$Bomb_Timer.start()
 # Code for instancing the bombs
-
 
 func checkdeath():
 	if max_health < 1:
@@ -69,5 +66,3 @@ func _on_Area2D_body_entered(body):
 		max_health -=2
 		print("Hit")
 		body.queue_free()
-
-
