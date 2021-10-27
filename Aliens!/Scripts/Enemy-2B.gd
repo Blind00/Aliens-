@@ -5,7 +5,7 @@ onready var player = get_parent().get_node("Player")
 
 var velocity = Vector2.ZERO
 var direction = velocity
-var Speed = 100
+var Speed = 200
 var max_health = 3
 
 func _ready():

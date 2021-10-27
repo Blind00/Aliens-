@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Enemy-1B.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Shield Charge.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BG!.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/Boss#1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Enemy-2B.tscn" type="PackedScene" id=6]
@@ -72,14 +71,11 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 3.0
 
-[node name="Area2D2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 268.355, 163.551 )
+[node name="Boss" parent="." instance=ExtResource( 5 )]
+position = Vector2( 217.052, -16.3162 )
 
 [node name="Enemy-1B" parent="." instance=ExtResource( 1 )]
-position = Vector2( 293.516, 49.9463 )
-
-[node name="Boss" parent="." instance=ExtResource( 5 )]
-position = Vector2( 80.5065, 93.6566 )
+position = Vector2( 111.259, 149.434 )
 
 [node name="Enemy-2B" parent="." instance=ExtResource( 6 )]
-position = Vector2( 602.925, 49.9463 )
+position = Vector2( 609.324, 67.816 )

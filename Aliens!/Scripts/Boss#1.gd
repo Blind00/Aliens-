@@ -17,10 +17,17 @@ func _ready():
 	add_to_group("ene")
 
 func _physics_process(_delta):
+	var to_player = player.global_position - self.global_position
+	var distance = to_player.length()
+	var direction = to_player.normalized()
+	if distance > 500:
+		self.move_and_slide(direction * Speed)
+	if distance < 250:
+		self.move_and_slide(direction * -Speed)
+	
 	if player == null:
 		return 
 	look_at(player.position)
-	position += transform.x * Speed  * _delta
 #The Boss chases after the player always looking at the player's character
 
 func shoot():

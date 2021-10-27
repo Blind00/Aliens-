@@ -130,4 +130,4 @@ func _on_CheckDeath_timeout():
 	checkdeath()
 
 func _on_RechargeShield_timeout():
-	shield_charge = 5
+	shield_charge = 10
