@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var speed = 180
+var speed = 200
 var steer_force = 50.0
 var can_steer = true
 

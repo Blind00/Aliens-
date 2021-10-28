@@ -28,17 +28,22 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -10.616 )
 
 [node name="Gun" type="Position2D" parent="."]
-position = Vector2( 37.5456, -43.7103 )
+position = Vector2( 34.4588, -44.3403 )
 
 [node name="Gun2" type="Position2D" parent="."]
 position = Vector2( 34.4588, 46.3861 )
+
+[node name="Gun3" type="Position2D" parent="."]
+position = Vector2( 34.4588, 105.581 )
+
+[node name="Gun4" type="Position2D" parent="."]
+position = Vector2( 34.4588, -101.501 )
 
 [node name="Bomb_Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
 
 [node name="Shoot_Timer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [node name="Back" type="Timer" parent="."]

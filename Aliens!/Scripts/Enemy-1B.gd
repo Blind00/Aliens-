@@ -5,8 +5,9 @@ onready var player = get_parent().get_node("Player")
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
 var direction = velocity
-var Speed = 350
+var Speed = 150
 var max_health = 2
+var speed = 300
 
 func _ready():
 	add_to_group("ene")
@@ -15,7 +16,14 @@ func _ready():
 func _physics_process(_delta):
 	if player == null:
 		pass 
-	position += transform.x * Speed  * _delta
+	var to_player = player.global_position - self.global_position
+	var distance = to_player.length()
+	var direction = to_player.normalized()
+	if distance > 300:
+		self.move_and_slide(direction * Speed)
+	if distance < 250:
+		self.move_and_slide(direction * -speed)
+	
 	look_at(player.global_position)
 
 func shoot():
