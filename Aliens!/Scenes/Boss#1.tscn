@@ -10,6 +10,7 @@ radius = 24.1268
 radius = 42.704
 
 [node name="Boss" type="KinematicBody2D"]
+self_modulate = Color( 1, 0.655869, 0.655869, 1 )
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -28,16 +29,16 @@ texture = ExtResource( 1 )
 offset = Vector2( 0, -10.616 )
 
 [node name="Gun" type="Position2D" parent="."]
-position = Vector2( 34.4588, -44.3403 )
+position = Vector2( 44.4588, -23.0358 )
 
 [node name="Gun2" type="Position2D" parent="."]
-position = Vector2( 34.4588, 46.3861 )
+position = Vector2( 44.4588, 22.6032 )
 
 [node name="Gun3" type="Position2D" parent="."]
-position = Vector2( 34.4588, 105.581 )
+position = Vector2( 0, 90.2362 )
 
 [node name="Gun4" type="Position2D" parent="."]
-position = Vector2( 34.4588, -101.501 )
+position = Vector2( 0, -88.8492 )
 
 [node name="Bomb_Timer" type="Timer" parent="."]
 wait_time = 5.0

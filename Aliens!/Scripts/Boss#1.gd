@@ -23,10 +23,11 @@ func _physics_process(_delta):
 	var to_player = player.global_position - self.global_position
 	var distance = to_player.length()
 	var direction = to_player.normalized()
-	if distance > 350:
+	if distance > 300:
 		self.move_and_slide(direction * Speed)
 	if distance < 200:
 		self.move_and_slide(direction * -speed)
+		
 	
 	if player == null:
 		return 
@@ -98,7 +99,7 @@ func _on_Bomb_Timer_timeout():
 
 func _on_Shoot_Timer_timeout():
 	can_shoot = true
-	shoot()
+	pass
 
 func _on_Area2D_body_entered(body):
 	if "P_Laser" in body.name:

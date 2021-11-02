@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 var speed = 500
 
@@ -7,6 +7,7 @@ func _ready():
 
 func _physics_process(delta):
 	position += transform.x * speed * delta 
+	$AnimationPlayer.play("rotation")
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var speed = 200
 export var friction = 0.01
 export var acceleration = 0.01
-export (float) var max_health = 5
+export (float) var max_health = 15
 
 var laser_bolt = preload("res://Scenes/P_Laser.tscn")
 var ability = preload("res://Scenes/p_Bullet.tscn")
@@ -20,7 +20,6 @@ func _ready():
 #When taking damage, the game looks for an association to a group
 #If it corresponds with what the bullet is allowed to damage
 #I've tried  other ways of doing it but it either didn't tell me how to do things clear enough or that it was beginner-unfriendly
-
 
 func get_input():
 	var input = Vector2()
@@ -113,7 +112,7 @@ func _on_Ouch_body_entered(body):
 	if body.is_in_group("ene"):
 		max_health -= 2
 		checkdeath()
-	if body.is_in_group("B"):
+	if "B" in body.name:
 		max_health -= 3
 		checkdeath()
 		print("Got Hit!")
