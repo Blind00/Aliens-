@@ -7,11 +7,10 @@ onready var player = get_parent().get_node("Player")
 
 var bullet_scene = preload("res://Scenes/B_bullet.tscn")
 var velocity = Vector2.ZERO
-var direction = velocity
 var can_shoot = true
 var bomb_scene = preload("res://Scenes/B_Bomb.tscn")
 var health = 5
-var health2 = 20
+var health2 = 10
 var damage = 2
 var phasetwo = false
 
@@ -28,7 +27,6 @@ func _physics_process(_delta):
 	if distance < 200:
 		self.move_and_slide(direction * -speed)
 		
-	
 	if player == null:
 		return 
 	look_at(player.position)

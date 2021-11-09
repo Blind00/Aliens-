@@ -10,7 +10,8 @@ var ability = preload("res://Scenes/p_Bullet.tscn")
 var velocity = Vector2()
 var shield_able = true
 var shield_up = false
-var shield_charge = 10
+var charge = 10
+var ammo = 20
 
 func _ready():
 	add_to_group("P")
@@ -37,7 +38,7 @@ func get_input():
 		else:
 			shoot()
 	if Input.is_action_just_pressed("Shield"):
-		if shield_charge != 0:
+		if charge != 0:
 			Shield()
 			can_shield()
 		else:
@@ -77,7 +78,7 @@ func dead():
 #If I die the scene reloads
 
 func Shield():
-	shield_charge -= 1
+	charge -= 1
 	var abi = ability.instance()
 	add_child(abi)
 	abi.transform = $Shield.transform
@@ -88,10 +89,10 @@ func Shield():
 #If you failed to block the bullet or use the shield too late you will get hit 
 
 func checkshield():
-	if shield_charge < 1:
+	if charge < 1:
 		RechargeShield()
 		print("Shield Charge Depleted")
-	if shield_charge != 0:
+	if charge != 0:
 		pass
 #When the shield charge depletes a timer starts
 
@@ -129,4 +130,4 @@ func _on_CheckDeath_timeout():
 	checkdeath()
 
 func _on_RechargeShield_timeout():
-	shield_charge = 10
+	charge = 10
