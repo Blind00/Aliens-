@@ -97,7 +97,7 @@ func _on_Bomb_Timer_timeout():
 
 func _on_Shoot_Timer_timeout():
 	can_shoot = true
-	pass
+	shoot()
 
 func _on_Area2D_body_entered(body):
 	if "P_Laser" in body.name:

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var speed = 500
+var speed = 480
 
 func _ready():
 	add_to_group("B")

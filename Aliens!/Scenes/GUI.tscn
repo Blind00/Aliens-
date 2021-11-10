@@ -33,7 +33,7 @@ margin_bottom = 40.0
 
 [node name="Background" type="NinePatchRect" parent="HBoxContainer/Bars/Bar/Count"]
 margin_right = 100.0
-margin_bottom = 60.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 60, 40 )

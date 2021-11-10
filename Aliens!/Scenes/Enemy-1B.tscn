@@ -4,10 +4,10 @@
 [ext_resource path="res://Scripts/Enemy-1B.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 30.744
+radius = 20.6069
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 55.2614
+radius = 48.4713
 
 [node name="Enemy-1B" type="KinematicBody2D"]
 position = Vector2( -0.0297241, 0.218174 )
@@ -16,6 +16,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = -1.5708
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 offset = Vector2( -0.49202, -0.0836058 )
 flip_v = true
