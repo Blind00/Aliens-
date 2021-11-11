@@ -5,7 +5,7 @@ onready var player = get_parent().get_node("Player")
 
 var velocity = Vector2.ZERO
 var direction = velocity
-var Speed = 200
+var Speed = 150
 var max_health = 3
 
 func _ready():
@@ -27,7 +27,8 @@ func _on_Enemy2B_body_entered(body):
 
 func _on_Speed_timeout():
 	Speed += 100
+	$SpeedBoost.play()
 
 func checkdeath():
 	if max_health < 1:
-		queue_free()
+		$DeathSound.play()

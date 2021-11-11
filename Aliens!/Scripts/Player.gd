@@ -12,6 +12,7 @@ var shield_able = true
 var shield_up = false
 var charge = 10
 var ammo = 20
+var gun_switch = 0
 
 func _ready():
 	add_to_group("P")
@@ -101,9 +102,18 @@ func RechargeShield():
 #When the timer stops it recharges some charges
 
 func shoot():
-	var las = laser_bolt.instance()
-	owner.add_child(las)
-	las.transform = $Gun.global_transform
+	if gun_switch == 0:
+		var las = laser_bolt.instance()
+		owner.add_child(las)
+		las.transform = $Gun.global_transform
+		gun_switch = 1
+		$AudioStreamPlayer2D.play()
+	elif gun_switch == 1:
+		var las = laser_bolt.instance()
+		owner.add_child(las)
+		las.transform = $Gun2.global_transform
+		gun_switch = 0
+		$AudioStreamPlayer2D.play()
 #This spawns bullets
 
 func _on_Ouch_body_entered(body):

@@ -85,8 +85,9 @@ func bomb():
 func checkdeath():
 	if health < 1:
 		Phase2()
-	else:
-		pass
+	if health2 < 1:
+		queue_free()
+		$DeathSound.play()
 
 func Phase2():
 	phasetwo = true

@@ -4,7 +4,6 @@ onready var player = get_parent().get_node("Player")
 
 var bullet_scene = load("res://Scenes/e1_Bullet.tscn")
 var velocity = Vector2.ZERO
-var direction = velocity
 var Speed = 180
 var max_health = 2
 var speed = 300
@@ -35,6 +34,8 @@ func shoot():
 	las2.global_transform = $Gun2.global_transform
 	get_parent().add_child(las2)
 	$Timer.start()
+	$LaserSound.play()
+	
 
 func _on_Timer_timeout():
 		shoot()
@@ -45,6 +46,11 @@ func _on_DeathCircle_body_entered(body):
 		checkdeath()
 		body.queue_free()
 
+
 func checkdeath():
 	if max_health < 1:
-		queue_free()
+		Dead()
+
+func Dead():
+	$DeathSound.play()
+	queue_free()
