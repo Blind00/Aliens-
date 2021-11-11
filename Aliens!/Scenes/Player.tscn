@@ -340,4 +340,22 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ouch"]
 rotation = -1.5708
 shape = SubResource( 7 )
+<<<<<<< Updated upstream
+=======
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ShieldTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+autostart = true
+
+[node name="ShieldLifeTime" type="Timer" parent="Timers"]
+wait_time = 0.5
+
+[node name="CheckDeath" type="Timer" parent="Timers"]
+wait_time = 3.0
+
+[node name="RechargeShield" type="Timer" parent="Timers"]
+wait_time = 5.0
+>>>>>>> Stashed changes
 [connection signal="body_entered" from="Ouch" to="." method="_on_Ouch_body_entered"]
